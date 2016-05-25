@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_xiu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="咻一咻" />
+
+    <Button
+        android:id="@+id/btn_gao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高仿" />
+
+    <Button
+        android:id="@+id/btn_guayigua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="刮刮卡" />
+
+    <Button
+        android:id="@+id/btn_vp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="卡片切换" />
+
+    <Button
+        android:id="@+id/btn_swipecard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SwipeCard" />
+
+    <Button
+        android:id="@+id/btn_study"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="学习" />
+
+    <com.tzj.tzjcustomview.MoveCircleView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
