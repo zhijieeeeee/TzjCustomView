@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_vp;
     private Button btn_swipecard;
     private Button btn_study;
+    private Button btn_tabLayout_viewpager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_vp = (Button) findViewById(R.id.btn_vp);
         btn_swipecard= (Button) findViewById(R.id.btn_swipecard);
         btn_study= (Button) findViewById(R.id.btn_study);
+        btn_tabLayout_viewpager= (Button) findViewById(R.id.btn_tabLayout_viewpager);
         btn_xiu.setOnClickListener(this);
         btn_gao.setOnClickListener(this);
         btn_guayigua.setOnClickListener(this);
         btn_vp.setOnClickListener(this);
         btn_swipecard.setOnClickListener(this);
         btn_study.setOnClickListener(this);
+        btn_tabLayout_viewpager.setOnClickListener(this);
     }
 
     @Override
@@ -70,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_study:
                 startActivity(new Intent(MainActivity.this, StudyActivity.class));
+                break;
+            case R.id.btn_tabLayout_viewpager:
+                startActivity(new Intent(MainActivity.this, TabVpActivity.class));
                 break;
         }
     }

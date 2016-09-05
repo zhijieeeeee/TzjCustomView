@@ -21,6 +21,7 @@
         <activity android:name=".ExchangeActivity" />
         <activity android:name=".SwipeCardActivity"/>
         <activity android:name=".StudyActivity"/>
+        <activity android:name=".TabVpActivity"/>
     </application>
 
 </manifest>
