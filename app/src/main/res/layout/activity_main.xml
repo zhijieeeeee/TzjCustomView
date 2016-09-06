@@ -44,7 +44,12 @@
         android:id="@+id/btn_tabLayout_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:text="TabLayout+Viewpager" />
+
+    <Button
+        android:id="@+id/btn_viewDragHelper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ViewDragHelper" />
 
 </LinearLayout>

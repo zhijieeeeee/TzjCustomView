@@ -23,7 +23,9 @@ import com.tzj.tzjcustomview.exchangeview.ZoomOutPageTransformer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
+public class MainActivity extends SwipeBackActivity implements View.OnClickListener {
 
     private Button btn_xiu;
     private Button btn_gao;
@@ -32,18 +34,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_swipecard;
     private Button btn_study;
     private Button btn_tabLayout_viewpager;
+    private Button btn_viewDragHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //是否允许滑动返回
+        setSwipeBackEnable(false);
         btn_xiu = (Button) findViewById(R.id.btn_xiu);
         btn_guayigua = (Button) findViewById(R.id.btn_guayigua);
         btn_gao = (Button) findViewById(R.id.btn_gao);
         btn_vp = (Button) findViewById(R.id.btn_vp);
-        btn_swipecard= (Button) findViewById(R.id.btn_swipecard);
-        btn_study= (Button) findViewById(R.id.btn_study);
-        btn_tabLayout_viewpager= (Button) findViewById(R.id.btn_tabLayout_viewpager);
+        btn_swipecard = (Button) findViewById(R.id.btn_swipecard);
+        btn_study = (Button) findViewById(R.id.btn_study);
+        btn_tabLayout_viewpager = (Button) findViewById(R.id.btn_tabLayout_viewpager);
+        btn_viewDragHelper = (Button) findViewById(R.id.btn_viewDragHelper);
         btn_xiu.setOnClickListener(this);
         btn_gao.setOnClickListener(this);
         btn_guayigua.setOnClickListener(this);
@@ -51,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_swipecard.setOnClickListener(this);
         btn_study.setOnClickListener(this);
         btn_tabLayout_viewpager.setOnClickListener(this);
+        btn_viewDragHelper.setOnClickListener(this);
     }
 
     @Override
@@ -76,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_tabLayout_viewpager:
                 startActivity(new Intent(MainActivity.this, TabVpActivity.class));
+                break;
+            case R.id.btn_viewDragHelper:
+                startActivity(new Intent(MainActivity.this, ViewDragHelperActivity.class));
                 break;
         }
     }

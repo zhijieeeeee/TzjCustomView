@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.tzj.tzjcustomview"
-        minSdkVersion 8
-        targetSdkVersion 23
+        minSdkVersion 14
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -24,4 +24,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.android.support:design:23.3.0'
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 }
