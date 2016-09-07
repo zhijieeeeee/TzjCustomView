@@ -24,6 +24,8 @@
         <activity android:name=".StudyActivity"/>
         <activity android:name=".TabVpActivity"/>
         <activity android:name=".ViewDragHelperActivity"/>
+        <activity android:name=".RvGalleryActivity"/>
+        <activity android:name=".RvGalleryWithScaleActivity"/>
     </application>
 
 </manifest>
