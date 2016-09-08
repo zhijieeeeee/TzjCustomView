@@ -14,6 +14,8 @@ import com.tzj.tzjcustomview.rvgalleryview.library.CardScaleHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
 /**
  * <p>
  * Description：
@@ -21,7 +23,7 @@ import java.util.List;
  *
  * @author tangzhijie
  */
-public class RvGalleryWithScaleActivity extends AppCompatActivity {
+public class RvGalleryWithScaleActivity extends SwipeBackActivity {
 
     private RecyclerView rv;
     private RvAdapterWithScale adapter;

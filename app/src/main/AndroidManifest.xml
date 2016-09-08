@@ -23,6 +23,7 @@
         <activity android:name=".SwipeCardActivity"/>
         <activity android:name=".StudyActivity"/>
         <activity android:name=".TabVpActivity"/>
+        <activity android:name=".TabVpDetailActivity"/>
         <activity android:name=".ViewDragHelperActivity"/>
         <activity android:name=".RvGalleryActivity"/>
         <activity android:name=".RvGalleryWithScaleActivity"/>

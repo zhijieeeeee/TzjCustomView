@@ -12,6 +12,8 @@ import com.tzj.tzjcustomview.rvgalleryview.RvAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
 /**
  * <p>
  * Description：
@@ -19,7 +21,7 @@ import java.util.List;
  *
  * @author tangzhijie
  */
-public class RvGalleryActivity extends AppCompatActivity {
+public class RvGalleryActivity extends SwipeBackActivity {
 
     private RecyclerView rv;
     private RvAdapter adapter;
@@ -42,7 +44,7 @@ public class RvGalleryActivity extends AppCompatActivity {
             list.add(R.drawable.pic5);
             list.add(R.drawable.pic6);
         }
-        adapter = new RvAdapter(list);
+        adapter = new RvAdapter(this,list);
         rv.setAdapter(adapter);
     }
 }
