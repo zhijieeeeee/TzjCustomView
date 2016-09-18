@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.tzj.tzjcustomview.intercepttest.ViewGroupA
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ff00ff">
+
+        <com.tzj.tzjcustomview.intercepttest.ViewGroupB
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00ffff">
+
+            <com.tzj.tzjcustomview.intercepttest.MyView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff000" />
+        </com.tzj.tzjcustomview.intercepttest.ViewGroupB>
+    </com.tzj.tzjcustomview.intercepttest.ViewGroupA>
+</LinearLayout>

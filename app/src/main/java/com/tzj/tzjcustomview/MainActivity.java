@@ -21,7 +21,9 @@ public class MainActivity extends SwipeBackActivity {
             "TabLayout+Viewpager",
             "ViewDragHelper",
             "自动校正的recyclerView",
-            "自动校正并缩放的recyclerView"};
+            "自动校正并缩放的recyclerView",
+            "InterceptTest"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,9 @@ public class MainActivity extends SwipeBackActivity {
                     case 9:
                         startActivity(new Intent(MainActivity.this, RvGalleryWithScaleActivity.class));
                         break;
-
+                    case 10:
+                        startActivity(new Intent(MainActivity.this, InterceptTestActivity.class));
+                        break;
                 }
             }
         });
