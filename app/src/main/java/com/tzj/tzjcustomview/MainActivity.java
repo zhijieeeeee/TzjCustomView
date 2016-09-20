@@ -2,7 +2,9 @@ package com.tzj.tzjcustomview;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -22,7 +24,7 @@ public class MainActivity extends SwipeBackActivity {
             "ViewDragHelper",
             "自动校正的recyclerView",
             "自动校正并缩放的recyclerView",
-            "InterceptTest"
+            "InterceptTest", "平移各种方法测试与scroll", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -33,6 +35,8 @@ public class MainActivity extends SwipeBackActivity {
         setSwipeBackEnable(false);
 
         ListView lv = (ListView) findViewById(R.id.lv);
+        //给ListView设置无数据时显示的布局
+        lv.setEmptyView(findViewById(R.id.iv_empty));
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, item);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,7 +76,24 @@ public class MainActivity extends SwipeBackActivity {
                     case 10:
                         startActivity(new Intent(MainActivity.this, InterceptTestActivity.class));
                         break;
+                    case 11:
+                        startActivity(new Intent(MainActivity.this, ScrollTestActivity.class));
+                        break;
                 }
+            }
+        });
+        lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+                Log.i("MyLog", "firstVisibleItem=" + firstVisibleItem);
+                Log.i("MyLog", "visibleItemCount=" + visibleItemCount);
+                Log.i("MyLog", "totalItemCount=" + totalItemCount);
             }
         });
     }

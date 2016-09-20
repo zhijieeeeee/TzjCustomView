@@ -28,6 +28,7 @@
         <activity android:name=".RvGalleryActivity"/>
         <activity android:name=".RvGalleryWithScaleActivity"/>
         <activity android:name=".InterceptTestActivity"/>
+        <activity android:name=".ScrollTestActivity"/>
     </application>
 
 </manifest>

@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 /**
  * <p>
- * Description：
+ * Description：ViewDragHelper学习
  * </p>
  *
  * @author tangzhijie

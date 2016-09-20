@@ -1,4 +1,4 @@
-package com.tzj.tzjcustomview.scrollview;
+package com.tzj.tzjcustomview.scrolltest;
 
 import android.content.Context;
 import android.support.v4.view.ViewConfigurationCompat;
