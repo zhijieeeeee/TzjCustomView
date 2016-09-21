@@ -33,6 +33,22 @@ public class ScreenUtil {
     }
 
     /**
+     * px转化为sp
+     */
+    public static int px2sp(Context context, float pxValue) {
+        final float fontsScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontsScale + 0.5f);
+    }
+
+    /**
+     * px转化为sp
+     */
+    public static int sp2px(Context context, float spValue) {
+        final float fontsScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontsScale + 0.5f);
+    }
+
+    /**
      * 获得屏幕的宽
      */
     public static int getScreenWidth(Context context) {

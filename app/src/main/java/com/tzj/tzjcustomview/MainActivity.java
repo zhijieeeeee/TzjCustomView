@@ -24,7 +24,9 @@ public class MainActivity extends SwipeBackActivity {
             "ViewDragHelper",
             "自动校正的recyclerView",
             "自动校正并缩放的recyclerView",
-            "InterceptTest", "平移各种方法测试与scroll", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+            "InterceptTest",
+            "平移各种方法测试与scroll",
+            "绘制时钟", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -78,6 +80,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 11:
                         startActivity(new Intent(MainActivity.this, ScrollTestActivity.class));
+                        break;
+                    case 12:
+                        startActivity(new Intent(MainActivity.this, ClockActivity.class));
                         break;
                 }
             }

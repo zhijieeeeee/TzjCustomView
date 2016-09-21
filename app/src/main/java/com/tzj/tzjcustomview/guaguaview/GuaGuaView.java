@@ -95,6 +95,9 @@ public class GuaGuaView extends View {
         mPaint.setStrokeJoin(Paint.Join.ROUND); // 圆角
         mPaint.setStrokeCap(Paint.Cap.ROUND); // 圆角
         mPaint.setStrokeWidth(PAINT_WIDTH);// 设置画笔宽度
+        //设置模式，交集部分会消失
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+
         //初始化刮奖层上的文字画笔
         textPaint = new Paint();
         textPaint.setStrokeWidth(2);
@@ -103,6 +106,8 @@ public class GuaGuaView extends View {
         textPaint.setAntiAlias(true);
         //计算文字的大小，用于设置文字的绘制位置
         textPaint.getTextBounds(tipText, 0, tipText.length(), mTextBound);
+
+
         //初始化背景图
         mBgBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.mipmap.bg);
     }
@@ -126,10 +131,6 @@ public class GuaGuaView extends View {
         super.onDraw(canvas);
         //绘制背景图
         canvas.drawBitmap(mBgBitmap, 0, 0, null);
-        //设置模式，交集部分会消失
-        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        //在内存中的bitmap上画path，path与刮奖层的交集会消失
-        mCanvas.drawPath(mPath, mPaint);
         //把bitmap显示出来，覆盖在背景图上
         canvas.drawBitmap(mBitmap, 0, 0, null);
     }
@@ -156,9 +157,10 @@ public class GuaGuaView extends View {
                 }
                 mLastX = (int) event.getX();
                 mLastY = (int) event.getY();
-                invalidate();
                 break;
         }
+        mCanvas.drawPath(mPath, mPaint);
+        invalidate();
         return true;
     }
 

@@ -1,4 +1,4 @@
-package com.tzj.tzjcustomview;
+package com.tzj.tzjcustomview.loadingview;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,8 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.tzj.tzjcustomview.Point;
 
 /**
  * <p> FileName： MoveCircleView</p>
