@@ -9,7 +9,7 @@ import android.widget.Scroller;
 
 /**
  * <p>
- * Description：
+ * Description：平移view的各种方法
  * </p>
  *
  * @author tangzhijie

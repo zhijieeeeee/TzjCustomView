@@ -66,15 +66,15 @@ public class ClockView extends View {
                 degreePaint.setTextSize(50);
                 canvas.drawLine(
                         getMeasuredWidth() / 2,
-                        getHeight() / 2 - getMeasuredWidth() / 2,
+                        getMeasuredHeight() / 2 - getMeasuredWidth() / 2,
                         getMeasuredWidth() / 2,
-                        getHeight() / 2 - getMeasuredWidth() / 2 + quarterLineLength,
+                        getMeasuredHeight() / 2 - getMeasuredWidth() / 2 + quarterLineLength,
                         degreePaint);
 
                 canvas.drawText(
                         degree,
                         getMeasuredWidth() / 2 - degreePaint.measureText(degree) / 2,
-                        getHeight() / 2 - getMeasuredWidth() / 2 + quarterLineLength + 50,
+                        getMeasuredHeight() / 2 - getMeasuredWidth() / 2 + quarterLineLength + 50,
                         degreePaint);
             } else {
                 degreePaint.setColor(Color.GRAY);
@@ -82,15 +82,15 @@ public class ClockView extends View {
                 degreePaint.setTextSize(40);
                 canvas.drawLine(
                         getMeasuredWidth() / 2,
-                        getHeight() / 2 - getMeasuredWidth() / 2,
+                        getMeasuredHeight() / 2 - getMeasuredWidth() / 2,
                         getMeasuredWidth() / 2,
-                        getHeight() / 2 - getMeasuredWidth() / 2 + normalLineLength,
+                        getMeasuredHeight() / 2 - getMeasuredWidth() / 2 + normalLineLength,
                         degreePaint);
 
                 canvas.drawText(
                         degree,
                         getMeasuredWidth() / 2 - degreePaint.measureText(degree) / 2,
-                        getHeight() / 2 - getMeasuredWidth() / 2 + normalLineLength + 50,
+                        getMeasuredHeight() / 2 - getMeasuredWidth() / 2 + normalLineLength + 50,
                         degreePaint);
             }
             //每次画布旋转15度

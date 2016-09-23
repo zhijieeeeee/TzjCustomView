@@ -13,7 +13,7 @@ import android.widget.TextView;
 /**
  * <p> FileName： MyTextView</p>
  * <p>
- * Description：
+ * Description：仿ios字体流线型闪烁
  * </p>
  *
  * @author tangzhijie

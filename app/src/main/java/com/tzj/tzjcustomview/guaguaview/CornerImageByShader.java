@@ -7,6 +7,7 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,12 +16,12 @@ import com.tzj.tzjcustomview.R;
 
 /**
  * <p>
- * Description：通过BitmapShader绘制圆形图片
+ * Description：通过BitmapShader绘制圆角图片
  * </p>
  *
  * @author tangzhijie
  */
-public class CircleImageByShader extends View {
+public class CornerImageByShader extends View {
 
     //图片
     private Bitmap srcBitmap;
@@ -30,36 +31,33 @@ public class CircleImageByShader extends View {
     //用于缩放图片的
     private Matrix matrix;
 
-    //圆的宽度
-    private int viewWidth;
-    //半径
-    private int radius;
+    //圆角半径
+    private int radius = 50;
+    //圆角外接矩形
+    private RectF rectF;
 
-    public CircleImageByShader(Context context, AttributeSet attrs) {
+    public CornerImageByShader(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
         matrix = new Matrix();
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //强制设置控件宽高一样
-        viewWidth = Math.min(getMeasuredHeight(), getMeasuredWidth());
-        radius = viewWidth / 2;
-        setMeasuredDimension(viewWidth, viewWidth);
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        rectF = new RectF(0, 0, getMeasuredWidth(), getMeasuredHeight());
     }
 
     private void setShader() {
-        srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pic4);
+        srcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pic5);
 
         BitmapShader bitmapShader = new BitmapShader(srcBitmap,
                 Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
         //计算缩放比例
-        int bitMin = Math.min(srcBitmap.getHeight(), srcBitmap.getWidth());
-
-        float scale = viewWidth * 1.0f / bitMin;
+        float scale = Math.max(
+                getMeasuredWidth() * 1.0f / srcBitmap.getWidth(),
+                getMeasuredHeight() * 1.0f / srcBitmap.getHeight());
 
         matrix.setScale(scale, scale);
 
@@ -73,6 +71,6 @@ public class CircleImageByShader extends View {
         super.onDraw(canvas);
         setShader();
         //绘制圆角矩形
-        canvas.drawCircle(viewWidth / 2, viewWidth / 2, radius, paint);
+        canvas.drawRoundRect(rectF, radius, radius, paint);
     }
 }
