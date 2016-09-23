@@ -9,8 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.tzj.tzjcustomview.annotation.AnnotationUse;
+import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
+import com.tzj.tzjcustomview.annotation.TestAnnotation;
+
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
+@OnValueAnnotation("class")
 public class MainActivity extends SwipeBackActivity {
 
     private String[] item = {
@@ -96,10 +101,27 @@ public class MainActivity extends SwipeBackActivity {
             @Override
             public void onScroll(AbsListView absListView, int firstVisibleItem,
                                  int visibleItemCount, int totalItemCount) {
-                Log.i("MyLog", "firstVisibleItem=" + firstVisibleItem);
-                Log.i("MyLog", "visibleItemCount=" + visibleItemCount);
-                Log.i("MyLog", "totalItemCount=" + totalItemCount);
+//                Log.i("MyLog", "firstVisibleItem=" + firstVisibleItem);
+//                Log.i("MyLog", "visibleItemCount=" + visibleItemCount);
+//                Log.i("MyLog", "totalItemCount=" + totalItemCount);
             }
         });
+
+        //获得注解
+        AnnotationUse.use(this);
+    }
+
+    @TestAnnotation(
+            name = "tangzhijie",
+            age = 100
+    )
+    @OnValueAnnotation("only one value")
+    public void annotationMethod() {
+
+    }
+
+    @TestAnnotation(age = 30)
+    public boolean annotationMethod2(){
+        return  false;
     }
 }
