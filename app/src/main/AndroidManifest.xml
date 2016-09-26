@@ -30,6 +30,7 @@
         <activity android:name=".InterceptTestActivity"/>
         <activity android:name=".ScrollTestActivity"/>
         <activity android:name=".ClockActivity"/>
+        <activity android:name=".MaterialActivity"/>
     </application>
 
 </manifest>

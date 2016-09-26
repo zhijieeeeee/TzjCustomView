@@ -1,7 +1,11 @@
 package com.tzj.tzjcustomview;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
@@ -30,8 +34,9 @@ public class MainActivity extends SwipeBackActivity {
             "自动校正的recyclerView",
             "自动校正并缩放的recyclerView",
             "InterceptTest",
-            "平移各种方法测试与scroll",
-            "绘制时钟", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+            "平移各种方法测试与Scroller",
+            "绘制时钟",
+            "材料设计的一些属性", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -51,10 +56,23 @@ public class MainActivity extends SwipeBackActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        startActivity(new Intent(MainActivity.this, XiuActivity.class));
+                        Intent intent = new Intent(MainActivity.this, XiuActivity.class);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            //加上5.0以上的翻页效果
+                            startActivity(intent, ActivityOptions
+                                    .makeSceneTransitionAnimation(MainActivity.this).toBundle());
+                        } else {
+                            startActivity(intent);
+                        }
                         break;
                     case 1:
-                        startActivity(new Intent(MainActivity.this, OtherActivity.class));
+                        Intent intent1 = new Intent(MainActivity.this, OtherActivity.class);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            startActivity(intent1, ActivityOptions
+                                    .makeSceneTransitionAnimation(MainActivity.this).toBundle());
+                        } else {
+                            startActivity(intent1);
+                        }
                         break;
                     case 2:
                         startActivity(new Intent(MainActivity.this, GuaActivity.class));
@@ -89,6 +107,9 @@ public class MainActivity extends SwipeBackActivity {
                     case 12:
                         startActivity(new Intent(MainActivity.this, ClockActivity.class));
                         break;
+                    case 13:
+                        startActivity(new Intent(MainActivity.this, MaterialActivity.class));
+                        break;
                 }
             }
         });
@@ -121,7 +142,7 @@ public class MainActivity extends SwipeBackActivity {
     }
 
     @TestAnnotation(age = 30)
-    public boolean annotationMethod2(){
-        return  false;
+    public boolean annotationMethod2() {
+        return false;
     }
 }
