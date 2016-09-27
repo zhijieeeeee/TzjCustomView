@@ -36,7 +36,8 @@ public class MainActivity extends SwipeBackActivity {
             "InterceptTest",
             "平移各种方法测试与Scroller",
             "绘制时钟",
-            "材料设计的一些属性", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+            "材料设计的一些属性",
+            "Notification测试", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -109,6 +110,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 13:
                         startActivity(new Intent(MainActivity.this, MaterialActivity.class));
+                        break;
+                    case 14:
+                        startActivity(new Intent(MainActivity.this, NotificationActivity.class));
                         break;
                 }
             }

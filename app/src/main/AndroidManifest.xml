@@ -31,6 +31,7 @@
         <activity android:name=".ScrollTestActivity"/>
         <activity android:name=".ClockActivity"/>
         <activity android:name=".MaterialActivity"/>
+        <activity android:name=".NotificationActivity"/>
     </application>
 
 </manifest>
