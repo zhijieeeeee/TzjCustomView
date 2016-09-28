@@ -32,6 +32,9 @@
         <activity android:name=".ClockActivity"/>
         <activity android:name=".MaterialActivity"/>
         <activity android:name=".NotificationActivity"/>
+        <activity android:name=".TweenAnimationActivity"/>
+        <activity android:name=".PropertyAnimatorActivity"/>
+        <activity android:name=".AnimationMenuActivity"/>
     </application>
 
 </manifest>

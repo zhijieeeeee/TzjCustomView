@@ -4,9 +4,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.transition.Slide;
-import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -37,7 +34,10 @@ public class MainActivity extends SwipeBackActivity {
             "平移各种方法测试与Scroller",
             "绘制时钟",
             "材料设计的一些属性",
-            "Notification测试", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+            "Notification测试",
+            "补间动画相关测试",
+            "属性动画相关测试",
+            "扩散菜单", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -113,6 +113,15 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 14:
                         startActivity(new Intent(MainActivity.this, NotificationActivity.class));
+                        break;
+                    case 15:
+                        startActivity(new Intent(MainActivity.this, TweenAnimationActivity.class));
+                        break;
+                    case 16:
+                        startActivity(new Intent(MainActivity.this, PropertyAnimatorActivity.class));
+                        break;
+                    case 17:
+                        startActivity(new Intent(MainActivity.this, AnimationMenuActivity.class));
                         break;
                 }
             }
