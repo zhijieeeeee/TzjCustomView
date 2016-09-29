@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/MainActivityStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,21 +21,22 @@
         <activity android:name=".GuaActivity" />
         <activity android:name=".OtherActivity" />
         <activity android:name=".ExchangeActivity" />
-        <activity android:name=".SwipeCardActivity"/>
-        <activity android:name=".StudyActivity"/>
-        <activity android:name=".TabVpActivity"/>
-        <activity android:name=".TabVpDetailActivity"/>
-        <activity android:name=".ViewDragHelperActivity"/>
-        <activity android:name=".RvGalleryActivity"/>
-        <activity android:name=".RvGalleryWithScaleActivity"/>
-        <activity android:name=".InterceptTestActivity"/>
-        <activity android:name=".ScrollTestActivity"/>
-        <activity android:name=".ClockActivity"/>
-        <activity android:name=".MaterialActivity"/>
-        <activity android:name=".NotificationActivity"/>
-        <activity android:name=".TweenAnimationActivity"/>
-        <activity android:name=".PropertyAnimatorActivity"/>
-        <activity android:name=".AnimationMenuActivity"/>
+        <activity android:name=".SwipeCardActivity" />
+        <activity android:name=".StudyActivity" />
+        <activity android:name=".TabVpActivity" />
+        <activity android:name=".TabVpDetailActivity" />
+        <activity android:name=".ViewDragHelperActivity" />
+        <activity android:name=".RvGalleryActivity" />
+        <activity android:name=".RvGalleryWithScaleActivity" />
+        <activity android:name=".InterceptTestActivity" />
+        <activity android:name=".ScrollTestActivity" />
+        <activity android:name=".ClockActivity" />
+        <activity android:name=".MaterialActivity" />
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".TweenAnimationActivity" />
+        <activity android:name=".PropertyAnimatorActivity" />
+        <activity android:name=".AnimationMenuActivity" />
+        <activity android:name=".puzzle.PuzzleActivity" />
     </application>
 
 </manifest>

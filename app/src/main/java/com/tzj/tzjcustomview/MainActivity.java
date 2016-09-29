@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.tzj.tzjcustomview.annotation.AnnotationUse;
 import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
 import com.tzj.tzjcustomview.annotation.TestAnnotation;
+import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -37,7 +38,8 @@ public class MainActivity extends SwipeBackActivity {
             "Notification测试",
             "补间动画相关测试",
             "属性动画相关测试",
-            "扩散菜单", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+            "扩散菜单",
+            "拼图", "1", "1", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -122,6 +124,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 17:
                         startActivity(new Intent(MainActivity.this, AnimationMenuActivity.class));
+                        break;
+                    case 18:
+                        startActivity(new Intent(MainActivity.this, PuzzleActivity.class));
                         break;
                 }
             }
