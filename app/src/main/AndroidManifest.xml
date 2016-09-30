@@ -17,7 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".XiuActivity" />
+        <activity android:name=".XiuActivity">
+            <intent-filter>
+                <!--根据这个action让其他应用打开这个页面-->
+                <action android:name="tzj" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".GuaActivity" />
         <activity android:name=".OtherActivity" />
         <activity android:name=".ExchangeActivity" />

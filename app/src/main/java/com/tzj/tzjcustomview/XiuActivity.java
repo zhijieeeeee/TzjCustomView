@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Explode;
 import android.view.Window;
+import android.widget.Toast;
 
 /**
  * <p> FileName： XiuActivity</p>
@@ -24,6 +25,10 @@ public class XiuActivity extends AppCompatActivity {
         getWindow().setEnterTransition(new Explode());
 
         setContentView(R.layout.activity_xiu);
+
+
+//        String tzj=getIntent().getStringExtra("tzj");
+//        Toast.makeText(this,tzj,Toast.LENGTH_SHORT).show();
 
     }
 }
