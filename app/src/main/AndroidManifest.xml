@@ -19,9 +19,16 @@
         </activity>
         <activity android:name=".XiuActivity">
             <intent-filter>
-                <!--根据这个action让其他应用打开这个页面-->
-                <action android:name="tzj" />
+                <!--隐式调用，只要匹配action中的一个就行了-->
+                <action android:name="xiu" />
+                <action android:name="xiu2" />
+                <!--要能接收隐式调用，必须设置default的category-->
                 <category android:name="android.intent.category.DEFAULT" />
+                <!--下面这个可设置可不设置，因为已经匹配了default-->
+                <category android:name="xiucategory" />
+                <!--没有指定URI，系统会默认content或file-->
+                <data android:mimeType="image/*"/>
+                <data android:mimeType="video/*" android:scheme="http"/>
             </intent-filter>
         </activity>
         <activity android:name=".GuaActivity" />

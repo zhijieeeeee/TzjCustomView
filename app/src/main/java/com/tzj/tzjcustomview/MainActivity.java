@@ -2,6 +2,7 @@ package com.tzj.tzjcustomview;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -59,7 +60,18 @@ public class MainActivity extends SwipeBackActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        Intent intent = new Intent(MainActivity.this, XiuActivity.class);
+
+                        //隐式调用
+                        Intent intent=new Intent();
+                        //只要匹配action中的一个就行了
+                        intent.setAction("xiu2");
+                        //系统会默认添加default的category，所以在manifest中必须也添加default的category
+                        //category要么不设置，要么设置了就要能对应
+                        intent.addCategory("xiucategory");
+                        //data如果没有指定URI，系统会默认content或file
+//                        intent.setDataAndType(Uri.parse("file://abc"),"image/*");
+                        intent.setDataAndType(Uri.parse("http://abc"),"video/*");
+
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             //加上5.0以上的翻页效果
                             startActivity(intent, ActivityOptions
