@@ -27,8 +27,10 @@
                 <!--下面这个可设置可不设置，因为已经匹配了default-->
                 <category android:name="xiucategory" />
                 <!--没有指定URI，系统会默认content或file-->
-                <data android:mimeType="image/*"/>
-                <data android:mimeType="video/*" android:scheme="http"/>
+                <data android:mimeType="image/*" />
+                <data
+                    android:mimeType="video/*"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity android:name=".GuaActivity" />
@@ -50,6 +52,11 @@
         <activity android:name=".PropertyAnimatorActivity" />
         <activity android:name=".AnimationMenuActivity" />
         <activity android:name=".puzzle.PuzzleActivity" />
+
+        <service
+            android:name=".aidl.TestService"
+            android:process=":remote" />
+        <activity android:name=".aidl.TestAidlActivity"/>
     </application>
 
 </manifest>

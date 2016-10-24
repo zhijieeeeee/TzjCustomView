@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.tzj.tzjcustomview.aidl.TestAidlActivity;
 import com.tzj.tzjcustomview.annotation.AnnotationUse;
 import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
 import com.tzj.tzjcustomview.annotation.TestAnnotation;
@@ -40,7 +41,8 @@ public class MainActivity extends SwipeBackActivity {
             "补间动画相关测试",
             "属性动画相关测试",
             "扩散菜单",
-            "拼图", "1", "1", "1", "1", "1", "1", "1", "1", "1"
+            "拼图",
+            "测试AIDL", "1", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -62,7 +64,7 @@ public class MainActivity extends SwipeBackActivity {
                     case 0:
 
                         //隐式调用
-                        Intent intent=new Intent();
+                        Intent intent = new Intent();
                         //只要匹配action中的一个就行了
                         intent.setAction("xiu2");
                         //系统会默认添加default的category，所以在manifest中必须也添加default的category
@@ -70,7 +72,7 @@ public class MainActivity extends SwipeBackActivity {
                         intent.addCategory("xiucategory");
                         //data如果没有指定URI，系统会默认content或file
 //                        intent.setDataAndType(Uri.parse("file://abc"),"image/*");
-                        intent.setDataAndType(Uri.parse("http://abc"),"video/*");
+                        intent.setDataAndType(Uri.parse("http://abc"), "video/*");
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             //加上5.0以上的翻页效果
@@ -139,6 +141,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 18:
                         startActivity(new Intent(MainActivity.this, PuzzleActivity.class));
+                        break;
+                    case 19:
+                        startActivity(new Intent(MainActivity.this, TestAidlActivity.class));
                         break;
                 }
             }
