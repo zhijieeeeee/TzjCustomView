@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.tzj.tzjcustomview.Book;
 import com.tzj.tzjcustomview.IMyAidlInterface;
+import com.tzj.tzjcustomview.IOnNewBookArrivedListener;
 
 /**
  * <p>
@@ -30,12 +31,24 @@ public class TestAidlActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service);
             try {
+
+                //注册新书新增的监听
+                iMyAidlInterface.registerListener(iOnNewBookArrivedListener);
+
                 iMyAidlInterface.add(1, 2);
 
-                Book book=new Book();
+                Book book = new Book();
                 book.setId("12346");
                 book.setName("乔布斯传");
                 iMyAidlInterface.addBook(book);
+
+                Book book2 = new Book();
+                book2.setId("4567");
+                book2.setName("馬克扎克伯格");
+                iMyAidlInterface.addBook(book2);
+
+                Log.i("MyLog", "书的数量=" + iMyAidlInterface.getBookList().size());
+
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -47,11 +60,38 @@ public class TestAidlActivity extends AppCompatActivity {
         }
     };
 
+    //监听
+    private IOnNewBookArrivedListener iOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub() {
+
+        @Override
+        public void onNewBookArrived(Book book) throws RemoteException {
+            Log.i("MyLog", "有书新增了");
+            Log.i("MyLog", "有书新增了=" + book.getId());
+            Log.i("MyLog", "有书新增了=" + book.getName());
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = new Intent(this, TestService.class);
         bindService(intent, serviceConnection, BIND_AUTO_CREATE);
-        Log.i("MyLog","Activity所在进程"+ Process.myPid());
+        Log.i("MyLog", "Activity所在进程" + Process.myPid());
     }
+
+    @Override
+    protected void onDestroy() {
+        //取消注册监听
+        if (iMyAidlInterface != null && iMyAidlInterface.asBinder().isBinderAlive()) {
+            try {
+                iMyAidlInterface.unRegisterListener(iOnNewBookArrivedListener);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+        unbindService(serviceConnection);
+        super.onDestroy();
+    }
+
+
 }

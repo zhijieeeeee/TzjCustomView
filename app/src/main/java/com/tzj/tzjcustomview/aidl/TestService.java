@@ -4,12 +4,17 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.Process;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.tzj.tzjcustomview.Book;
 import com.tzj.tzjcustomview.IMyAidlInterface;
+import com.tzj.tzjcustomview.IOnNewBookArrivedListener;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * <p>
@@ -20,22 +25,57 @@ import com.tzj.tzjcustomview.IMyAidlInterface;
  */
 public class TestService extends Service {
 
-    IMyAidlInterface.Stub mBinder=new IMyAidlInterface.Stub() {
-        @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+    /**
+     * 书列表
+     */
+    private CopyOnWriteArrayList<Book> bookList = new CopyOnWriteArrayList<>();
 
-        }
+    /**
+     * 注册的监听列表
+     * RemoteCallbackList是专门用来删除跨进程listener的接口
+     */
+    private RemoteCallbackList<IOnNewBookArrivedListener> listenerList
+            = new RemoteCallbackList<>();
+
+
+    IMyAidlInterface.Stub mBinder = new IMyAidlInterface.Stub() {
 
         @Override
         public void add(int a, int b) throws RemoteException {
-            Log.i("MyLog","Service所在进程"+ Process.myPid());
-            Log.i("MyLog","总和是"+(a+b));
+            Log.i("MyLog", "Service所在进程" + Process.myPid());
+            Log.i("MyLog", "总和是" + (a + b));
         }
 
         @Override
         public void addBook(Book book) throws RemoteException {
-            Log.i("MyLog",book.getId());
-            Log.i("MyLog",book.getName());
+            Log.i("MyLog", book.getId());
+            Log.i("MyLog", book.getName());
+            bookList.add(book);
+
+            //有新书添加了，通知所有的监听接口
+            int listenerCount = listenerList.beginBroadcast();
+            for (int i = 0; i < listenerCount; i++) {
+                IOnNewBookArrivedListener listenerItem = listenerList.getBroadcastItem(i);
+                if (listenerItem != null) {
+                    listenerItem.onNewBookArrived(book);
+                }
+            }
+            listenerList.finishBroadcast();
+        }
+
+        @Override
+        public List<Book> getBookList() throws RemoteException {
+            return bookList;
+        }
+
+        @Override
+        public void registerListener(IOnNewBookArrivedListener listener) throws RemoteException {
+            listenerList.register(listener);
+        }
+
+        @Override
+        public void unRegisterListener(IOnNewBookArrivedListener listener) throws RemoteException {
+            listenerList.unregister(listener);
         }
     };
 
