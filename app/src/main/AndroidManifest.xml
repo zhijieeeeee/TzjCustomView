@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tzj.tzjcustomview">
 
+    <!--权限功能，在AIDL中进行权限验证-->
+    <!--声明所需权限-->
+    <permission
+        android:name="com.tzj.tzjcustomview.permission.ACCESS_BOOK_SERVICE"
+        android:protectionLevel="normal" />
+    <!--设置拥有对应权限-->
+    <uses-permission android:name="com.tzj.tzjcustomview.permission.ACCESS_BOOK_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -56,7 +64,7 @@
         <service
             android:name=".aidl.TestService"
             android:process=":remote" />
-        <activity android:name=".aidl.TestAidlActivity"/>
+        <activity android:name=".aidl.TestAidlActivity" />
     </application>
 
 </manifest>

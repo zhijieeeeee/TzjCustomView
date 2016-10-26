@@ -2,6 +2,7 @@ package com.tzj.tzjcustomview.aidl;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.os.Process;
 import android.os.RemoteCallbackList;
@@ -87,6 +88,11 @@ public class TestService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        //权限验证
+        int check = checkCallingOrSelfPermission("com.tzj.tzjcustomview.permission.ACCESS_BOOK_SERVICE");
+        if (check == PackageManager.PERMISSION_DENIED) {
+            return null;
+        }
         return mBinder;
     }
 }
