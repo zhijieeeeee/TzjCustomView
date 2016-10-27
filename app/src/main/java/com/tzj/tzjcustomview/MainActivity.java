@@ -15,6 +15,7 @@ import com.tzj.tzjcustomview.aidl.TestAidlActivity;
 import com.tzj.tzjcustomview.annotation.AnnotationUse;
 import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
 import com.tzj.tzjcustomview.annotation.TestAnnotation;
+import com.tzj.tzjcustomview.intercepttest.solvexy.SolveXYActivity;
 import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -42,7 +43,8 @@ public class MainActivity extends SwipeBackActivity {
             "属性动画相关测试",
             "扩散菜单",
             "拼图",
-            "测试AIDL", "1", "1", "1", "1", "1", "1", "1", "1"
+            "测试AIDL",
+            "滑动冲突解决测试(横纵交替)", "1", "1", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -144,6 +146,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 19:
                         startActivity(new Intent(MainActivity.this, TestAidlActivity.class));
+                        break;
+                    case 20:
+                        startActivity(new Intent(MainActivity.this, SolveXYActivity.class));
                         break;
                 }
             }

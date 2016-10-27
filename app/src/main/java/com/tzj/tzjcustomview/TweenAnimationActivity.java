@@ -84,6 +84,8 @@ public class TweenAnimationActivity extends AppCompatActivity implements View.On
                         0, 200);
                 translateAnimation.setDuration(2000);
                 translateAnimation.setInterpolator(new BounceInterpolator());
+                //保留动画后的状态设为true，不然动画结束会回到初始状态
+                translateAnimation.setFillAfter(true);
                 v.startAnimation(translateAnimation);
                 break;
             case R.id.btn_animationset:

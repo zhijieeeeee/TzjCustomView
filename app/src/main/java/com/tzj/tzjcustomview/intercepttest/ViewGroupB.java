@@ -30,7 +30,7 @@ public class ViewGroupB extends ViewGroup {
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
         View child = getChildAt(0);
-        child.layout(200, 200, getMeasuredWidth() - 200, getMeasuredHeight() - 200);
+        child.layout(100, 100, getMeasuredWidth() - 300, getMeasuredHeight() - 300);
     }
 
     @Override

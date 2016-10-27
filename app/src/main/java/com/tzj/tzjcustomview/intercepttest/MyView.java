@@ -30,7 +30,19 @@ public class MyView extends View {
         Log.i("MyLog", "MyView:onTouchEvent");
 
         float x = event.getX();
-        Log.i("MyLog", "MyView:onTouchEvent:" + x);
+
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                Log.i("MyLog", "MyView:down:" + x);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.i("MyLog", "MyView:move:" + x);
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.i("MyLog", "MyView:up:" + x);
+                break;
+        }
+
 
         return true;
     }

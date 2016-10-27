@@ -60,6 +60,7 @@
         <activity android:name=".PropertyAnimatorActivity" />
         <activity android:name=".AnimationMenuActivity" />
         <activity android:name=".puzzle.PuzzleActivity" />
+        <activity android:name=".intercepttest.solvexy.SolveXYActivity"/>
 
         <service
             android:name=".aidl.TestService"
