@@ -23,17 +23,20 @@ public class MyHorizontalView extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            measureChild(child, widthMeasureSpec, heightMeasureSpec);
-        }
+//        for (int i = 0; i < getChildCount(); i++) {
+//            View child = getChildAt(i);
+//            measureChild(child, widthMeasureSpec, heightMeasureSpec);
+//        }
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
+        int childLeft=0;
         for (int index = 0; index < getChildCount(); index++) {
             View child = getChildAt(index);
-            child.layout(index * 800, 0, child.getMeasuredWidth() + index * 800, child.getMeasuredHeight());
+            child.layout(childLeft, 0, childLeft+child.getMeasuredWidth(), child.getMeasuredHeight());
+            childLeft+=child.getMeasuredWidth();
         }
     }
 
