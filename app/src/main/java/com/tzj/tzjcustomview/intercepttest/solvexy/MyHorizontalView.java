@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 /**
@@ -18,6 +19,8 @@ public class MyHorizontalView extends ViewGroup {
 
     public MyHorizontalView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        //获取判定为滑动的最小距离
+        ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
@@ -32,11 +35,11 @@ public class MyHorizontalView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
-        int childLeft=0;
+        int childLeft = 0;
         for (int index = 0; index < getChildCount(); index++) {
             View child = getChildAt(index);
-            child.layout(childLeft, 0, childLeft+child.getMeasuredWidth(), child.getMeasuredHeight());
-            childLeft+=child.getMeasuredWidth();
+            child.layout(childLeft, 0, childLeft + child.getMeasuredWidth(), child.getMeasuredHeight());
+            childLeft += child.getMeasuredWidth();
         }
     }
 
