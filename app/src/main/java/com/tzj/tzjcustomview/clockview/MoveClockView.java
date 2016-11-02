@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.Calendar;
@@ -80,39 +81,36 @@ public class MoveClockView extends View {
     private int minuteLineLength;
     private int secondLineLength;
 
-    private Calendar calendar;
-
-    private ScheduledExecutorService scheduledThreadPool
-            = Executors.newScheduledThreadPool(1);
+    private ScheduledExecutorService scheduledThreadPool;
 
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            calendar = Calendar.getInstance();
+            Calendar calendar = Calendar.getInstance();
             int hour24 = calendar.get(Calendar.HOUR);
             int minute = calendar.get(Calendar.MINUTE);
             int second = calendar.get(Calendar.SECOND);
+            Log.i("MyLog", "hour24=" + hour24);
+            Log.i("MyLog", "minute=" + minute);
+            Log.i("MyLog", "second=" + second);
 
-            //时针
-            hourBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-            hourCanvas = new Canvas(hourBitmap);
+
+            //清空canvas
             hourCanvas.rotate(hour24 * 30, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
             hourCanvas.drawLine(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
                     getMeasuredWidth() / 2, getMeasuredHeight() / 2 - hourLineLength, hourPaint);
 
-            //分针
-            minuteBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-            minuteCanvas = new Canvas(minuteBitmap);
-            minuteCanvas.rotate(minute * 6, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
+            //每过一分钟（60秒）分针添加6度，所以每秒分针添加0.1度；当minute加1时，正好second是0
+            minuteCanvas.rotate(minute * 6 + (second * 0.1f), getMeasuredWidth() / 2, getMeasuredHeight() / 2);
             minuteCanvas.drawLine(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
                     getMeasuredWidth() / 2, getMeasuredHeight() / 2 - minuteLineLength, minutePaint);
 
-            //秒针
-            secondBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-            secondCanvas = new Canvas(secondBitmap);
+            Log.i("MyLog", "分针旋转角度=" + (minute * 6 + (second * 0.1f)));
+
             secondCanvas.rotate(second * 6, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
             secondCanvas.drawLine(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
                     getMeasuredWidth() / 2, getMeasuredHeight() / 2 - secondLineLength, secondPaint);
+
             invalidate();
         }
     };
@@ -143,6 +141,20 @@ public class MoveClockView extends View {
         hourLineLength = radius / 2;
         minuteLineLength = radius * 3 / 4;
         secondLineLength = radius * 3 / 4;
+
+        //时针
+        hourBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        hourCanvas = new Canvas(hourBitmap);
+
+        //分针
+        minuteBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        minuteCanvas = new Canvas(minuteBitmap);
+
+        //秒针
+        secondBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        secondCanvas = new Canvas(secondBitmap);
+
+        scheduledThreadPool = Executors.newScheduledThreadPool(1);
 
         scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
 
@@ -236,4 +248,9 @@ public class MoveClockView extends View {
         }
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        scheduledThreadPool.shutdown();
+    }
 }
