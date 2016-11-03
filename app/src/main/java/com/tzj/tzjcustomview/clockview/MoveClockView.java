@@ -50,6 +50,7 @@ public class MoveClockView extends View {
      * 刻度线宽度
      */
     private final static int MARK_WIDTH = 8;
+
     /**
      * 刻度线长度
      */
@@ -158,8 +159,7 @@ public class MoveClockView extends View {
         minuteCanvas.drawLine(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
                 getMeasuredWidth() / 2, getMeasuredHeight() / 2 - minuteLineLength, minutePaint);
 
-        Log.i("MyLog", "分针旋转角度=" + (minute * 6 + (second * 0.1f)));
-
+        //每过一秒旋转6度
         secondCanvas.rotate(second * 6, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
         secondCanvas.drawLine(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
                 getMeasuredWidth() / 2, getMeasuredHeight() / 2 - secondLineLength, secondPaint);
