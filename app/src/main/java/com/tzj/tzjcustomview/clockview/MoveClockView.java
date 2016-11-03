@@ -61,20 +61,34 @@ public class MoveClockView extends View {
      */
     private final static int MARK_GAP = 12;
 
-    private Canvas hourCanvas;
-    private Canvas minuteCanvas;
-    private Canvas secondCanvas;
-
-    private Bitmap hourBitmap;
-    private Bitmap minuteBitmap;
-    private Bitmap secondBitmap;
-
+    /**
+     * 时针画笔
+     */
     private Paint hourPaint;
+
+    /**
+     * 分针画笔
+     */
     private Paint minutePaint;
+
+    /**
+     * 秒针画笔
+     */
     private Paint secondPaint;
 
+    /**
+     * 时针长度
+     */
     private int hourLineLength;
+
+    /**
+     * 分针长度
+     */
     private int minuteLineLength;
+
+    /**
+     * 秒针长度
+     */
     private int secondLineLength;
 
     public MoveClockView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -137,16 +151,16 @@ public class MoveClockView extends View {
         Log.i("MyLog", "second=" + second);
 
         //时针
-        hourBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        hourCanvas = new Canvas(hourBitmap);
+        Bitmap hourBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas hourCanvas = new Canvas(hourBitmap);
 
         //分针
-        minuteBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        minuteCanvas = new Canvas(minuteBitmap);
+        Bitmap minuteBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas minuteCanvas = new Canvas(minuteBitmap);
 
         //秒针
-        secondBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        secondCanvas = new Canvas(secondBitmap);
+        Bitmap secondBitmap = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas secondCanvas = new Canvas(secondBitmap);
 
         //(方案一)每过一小时(3600秒)时针添加30度，所以每秒时针添加（1/120）度
         //(方案二)每过一小时(60分钟)时针添加30度，所以每分钟时针添加（1/2）度
