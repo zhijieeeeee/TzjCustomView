@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <!--自定义java类-->
+        <variable
+            name="user"
+            type="com.tzj.tzjcustomview.databinding.User" />
+
+        <!--也可写成如下  alias可设置别名-->
+        <!--
+
+            <import type="com.tzj.tzjcustomview.databinding.User"/>
+            <variable name="user" type="User" />
+
+            <import type="com.tzj.tzjcustomview.databinding.User" alias="DetailUser"/>
+            <variable name="user" type="DetailUser" />
+        -->
+
+        <!--java.lang.* 包中的类会被自动导入，可以直接使用-->
+        <variable
+            name="age"
+            type="String" />
+
+        <!--导入方法-->
+        <import type="com.tzj.tzjcustomview.databinding.MyStringUtils" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.id}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{age}" />
+
+        <!--下面是使用静态方法-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{MyStringUtils.capitalize(user.name)}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{MyStringUtils.toString(user.number)}" />
+
+        <!--Null Coalescing 运算符-->
+        <!--就等价于
+
+        @{user.display != null ? user.display : user.id}"-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{user.display??user.id}" />
+
+    </LinearLayout>
+</layout>
