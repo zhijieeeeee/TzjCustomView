@@ -15,4 +15,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp" />
+
+    <ViewStub
+        android:id="@+id/vs_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/empty" />
 </LinearLayout>

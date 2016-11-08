@@ -84,6 +84,15 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_alpha:
+
+
+
+                //如果有无线循环的属性动画，要在activity销毁的时候停止，否则会发生内存泄漏，
+                //因为动画持有View,View又持有Activity
+                //animator.cancel()
+
+
+
                 ObjectAnimator alphaObj = ObjectAnimator.ofFloat(
                         v,
                         "alpha",

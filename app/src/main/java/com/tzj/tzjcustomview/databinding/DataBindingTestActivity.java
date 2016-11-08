@@ -31,6 +31,6 @@ public class DataBindingTestActivity extends AppCompatActivity {
         //这是绑定
         binding.setUser(user);
         binding.setAge("24");
-        binding.setShow(true);
+//        binding.setShow(true);
     }
 }
