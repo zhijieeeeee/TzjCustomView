@@ -7,6 +7,7 @@
     <permission
         android:name="com.tzj.tzjcustomview.permission.ACCESS_BOOK_SERVICE"
         android:protectionLevel="normal" />
+
     <!--设置拥有对应权限-->
     <uses-permission android:name="com.tzj.tzjcustomview.permission.ACCESS_BOOK_SERVICE" />
 
@@ -60,13 +61,26 @@
         <activity android:name=".PropertyAnimatorActivity" />
         <activity android:name=".AnimationMenuActivity" />
         <activity android:name=".puzzle.PuzzleActivity" />
-        <activity android:name=".intercepttest.solvexy.SolveXYActivity"/>
-        <activity android:name=".databinding.DataBindingTestActivity"/>
+        <activity android:name=".intercepttest.solvexy.SolveXYActivity" />
+        <activity android:name=".databinding.DataBindingTestActivity" />
 
         <service
             android:name=".aidl.TestService"
             android:process=":remote" />
         <activity android:name=".aidl.TestAidlActivity" />
+
+        <!--桌面小部件-->
+        <receiver android:name=".remoteviews.MyAppWidgetProvider">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider_info" />
+            <intent-filter>
+                <!--这个action用于识别小部件的单击事件-->
+                <action android:name="clock" />
+                <!--这个是系统规范，必须存在-->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
