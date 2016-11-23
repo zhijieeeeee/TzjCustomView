@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class VpFragment extends Fragment {
         //support v4 24.2.0中增加一个非常重要的类SnapHelper，
         // 他的作用是让RecyclerView滑动视图后使停止位置正好停在某页的正中间
 //        new LinearSnapHelper().attachToRecyclerView(rv);
+        Log.i("MyLog","c初始化联了了了了乐乐饿了");
 
         for (int i = 0; i < 15; i++) {
             list.add(R.drawable.pic4);

@@ -18,6 +18,7 @@ import com.tzj.tzjcustomview.annotation.TestAnnotation;
 import com.tzj.tzjcustomview.databinding.DataBindingTestActivity;
 import com.tzj.tzjcustomview.intercepttest.solvexy.SolveXYActivity;
 import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
+import com.tzj.tzjcustomview.verificationview.VerificationActivity;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -46,7 +47,8 @@ public class MainActivity extends SwipeBackActivity {
             "拼图",
             "测试AIDL",
             "滑动冲突解决测试(横纵交替)",
-            "DataBinding", "1", "1", "1", "1", "1", "1"
+            "DataBinding",
+            "验证码", "1", "1", "1", "1", "1"
     };
 
     @Override
@@ -154,6 +156,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 21:
                         startActivity(new Intent(MainActivity.this, DataBindingTestActivity.class));
+                        break;
+                    case 22:
+                        startActivity(new Intent(MainActivity.this, VerificationActivity.class));
                         break;
                 }
             }

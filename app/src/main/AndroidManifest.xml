@@ -63,6 +63,7 @@
         <activity android:name=".puzzle.PuzzleActivity" />
         <activity android:name=".intercepttest.solvexy.SolveXYActivity" />
         <activity android:name=".databinding.DataBindingTestActivity" />
+        <activity android:name=".verificationview.VerificationActivity" />
 
         <service
             android:name=".aidl.TestService"

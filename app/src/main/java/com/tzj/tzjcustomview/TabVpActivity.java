@@ -22,10 +22,10 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 public class TabVpActivity extends AppCompatActivity {
 
     private ViewPager vp;
-    private TabLayout tab;
+    private TabLayout tabLayout;
 
     private String[] title = new String[]{"Page1", "Page2", "Page3",
-            "Page4", "Page5", "Page6", "Page7", "Page8", "Page9"};
+            "Page4"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,13 +33,50 @@ public class TabVpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab_vp);
 
         vp = (ViewPager) findViewById(R.id.vp);
-        tab = (TabLayout) findViewById(R.id.tab);
+        tabLayout = (TabLayout) findViewById(R.id.tab);
 
         VpAdapter adapter = new VpAdapter(getSupportFragmentManager());
         vp.setAdapter(adapter);
-        tab.setupWithViewPager(vp);
+        vp.setOffscreenPageLimit(10);
+        tabLayout.setupWithViewPager(vp);
+
+        //自定义的tab
+        for (int i = 0; i < adapter.getCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            tab.setCustomView(R.layout.tab_view);
+            if (i == 0) {
+                // 设置第一个tab的TextView是被选择的样式
+                tab.getCustomView().findViewById(android.R.id.text1).setSelected(true);
+            }
+        }
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                // 将离开的tab的textView的select属性设置为true
+                tab.getCustomView().findViewById(android.R.id.text1).setSelected(true);
+                // 将viewpager的item与 tablayout的同步
+                vp.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                // 将离开的tab的textView的select属性设置为false
+                tab.getCustomView().findViewById(android.R.id.text1).setSelected(false);
+                // 将viewpager的item与 tablayout的同步
+                vp.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
         //计算tab宽度，设置模式
-        dynamicSetTabLayoutMode(tab);
+//        dynamicSetTabLayoutMode(tabLayout);
     }
 
     class VpAdapter extends FragmentPagerAdapter {
