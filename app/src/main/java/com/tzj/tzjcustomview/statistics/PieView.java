@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -31,7 +30,7 @@ public class PieView extends View {
     private static final int DEFAULT_HEIGHT = 800;
 
     /**
-     * 折线长度
+     * 斜线长度
      */
     private static final int SlASH_LINE_OFFSET = 60;
 
@@ -82,10 +81,13 @@ public class PieView extends View {
     private Paint mArcPaint;
 
     /**
-     * 文本画笔
+     * 中心文本画笔
      */
     private Paint textPaint;
 
+    /**
+     * 数据画笔
+     */
     private Paint linePaint;
 
     /**
@@ -115,12 +117,12 @@ public class PieView extends View {
     /**
      * 中间字体大小
      */
-    private float centerTextSize = 20;
+    private float centerTextSize = 80;
 
     /**
      * 数据字体大小
      */
-    private float dataTextSize = 10;
+    private float dataTextSize = 40;
 
     /**
      * 中间字体颜色
@@ -160,6 +162,9 @@ public class PieView extends View {
         init();
     }
 
+    /**
+     * 初始化
+     */
     private void init() {
         mArcPaint = new Paint();
         mArcPaint.setStrokeWidth(circleWidth);
@@ -237,9 +242,9 @@ public class PieView extends View {
             if (numbers[i] <= 0) {
                 continue;
             }
-            //当前扇形的中心度数
+            //当前扇形弧线相对于纵轴的中心点度数,由于扇形的绘制是从三点钟方向开始，所以加90
             float arcCenterDegree = 90 + startAngle - angle / 2;
-            drawLineAndData(canvas, arcCenterDegree, i);
+            calculateLineAndData(canvas, arcCenterDegree, i);
         }
         //绘制中心数字总和
         canvas.drawText(sum + "", centerX - centerTextBound.width() / 2, centerY + centerTextBound.height() / 2, textPaint);
@@ -252,25 +257,25 @@ public class PieView extends View {
      * @param degree 当前扇形中心度数
      * @param i      当前下标
      */
-    private void drawLineAndData(Canvas canvas, float degree, int i) {
+    private void calculateLineAndData(Canvas canvas, float degree, int i) {
         //扇形弧线中心点距离圆心的坐标
         float x;
         float y;
-        //折线开始坐标(扇形弧线中心点相对于view的坐标)
+        //斜线开始坐标(扇形弧线中心点相对于view的坐标)
         float startX;
         float startY;
-        //折线结束坐标
-        float endX;
-        float endY;
+        //斜线结束坐标
+        float endX = 0;
+        float endY = 0;
         //横线结束坐标
-        float horEndX;
-        float horEndY;
+        float horEndX = 0;
+        float horEndY = 0;
         //数字开始坐标
-        float numberStartX;
-        float numberStartY;
+        float numberStartX = 0;
+        float numberStartY = 0;
         //文本开始坐标
-        float textStartX;
-        float textStartY;
+        float textStartX = 0;
+        float textStartY = 0;
 
         //sin 一二正，三四负
         x = (float) (Math.sin(Math.toRadians(degree)) * radius);
@@ -280,91 +285,137 @@ public class PieView extends View {
         startX = centerX + x;
         startY = centerY - y;
 
-        if (degree > 90 && degree < 180) {//2象限
+        //根据角度判断象限，并且计算各个坐标点
+        if (degree > 90 && degree < 180) {//二象限
             endX = startX + SlASH_LINE_OFFSET;
             endY = startY + SlASH_LINE_OFFSET;
-            //绘制折线
-            canvas.drawLine(startX, startY, endX, endY, linePaint);
-            //绘制横线
-            canvas.drawLine(endX, endY, endX + HOR_LINE_LENGTH, endY, linePaint);
-            //绘制数字
-            canvas.drawText(numbers[i] + "", endX + X_OFFSET, endY - Y_OFFSET, linePaint);
-            //绘制名称
-            canvas.drawText(names[i] + "", endX + X_OFFSET, endY + dataTextBound.height() / 2, linePaint);
+
+            horEndX = endX + HOR_LINE_LENGTH;
+            horEndY = endY;
+
+            numberStartX = endX + X_OFFSET;
+            numberStartY = endY - Y_OFFSET;
+
+            textStartX = endX + X_OFFSET;
+            textStartY = endY + dataTextBound.height()+Y_OFFSET;
         } else if (degree == 180) {
             startX = centerX;
             startY = centerY + radius;
             endX = startX + SlASH_LINE_OFFSET;
             endY = startY + SlASH_LINE_OFFSET;
-            //绘制折线
-            canvas.drawLine(startX, startY, endX, endY, linePaint);
-            //绘制横线
-            canvas.drawLine(endX, endY, endX + HOR_LINE_LENGTH, endY, linePaint);
-            //绘制数字
-            canvas.drawText(numbers[i] + "", endX + X_OFFSET, endY - Y_OFFSET, linePaint);
-            //绘制名称
-            canvas.drawText(names[i] + "", endX + X_OFFSET, endY + dataTextBound.height() / 2, linePaint);
-        } else if (degree > 180 && degree < 270) {//3象限
+
+
+            horEndX = endX + HOR_LINE_LENGTH;
+            horEndY = endY;
+
+            numberStartX = endX + X_OFFSET;
+            numberStartY = endY - Y_OFFSET;
+
+            textStartX = endX + X_OFFSET;
+            textStartY = endY + dataTextBound.height()+Y_OFFSET;
+        } else if (degree > 180 && degree < 270) {//三象限
             endX = startX - SlASH_LINE_OFFSET;
             endY = startY + SlASH_LINE_OFFSET;
-            //绘制折线
-            canvas.drawLine(startX, startY, endX, endY, linePaint);
-            //绘制横线
-            canvas.drawLine(endX, endY, endX - HOR_LINE_LENGTH, endY, linePaint);
-            //绘制数字
-            canvas.drawText(numbers[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY - Y_OFFSET, linePaint);
-            //绘制名称
-            canvas.drawText(names[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY + dataTextBound.height() / 2, linePaint);
+
+            horEndX = endX - HOR_LINE_LENGTH;
+            horEndY = endY;
+
+            numberStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            numberStartY = endY - Y_OFFSET;
+
+            textStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            textStartY = endY + dataTextBound.height()+Y_OFFSET;
         } else if (degree == 270) {
             startX = centerX - radius;
             startY = centerY;
             endX = startX - SlASH_LINE_OFFSET;
             endY = startY - SlASH_LINE_OFFSET;
-            //绘制折线
-            canvas.drawLine(startX, startY, endX, endY, linePaint);
-            //绘制横线
-            canvas.drawLine(endX, endY, endX - HOR_LINE_LENGTH, endY, linePaint);
-            //绘制数字
-            canvas.drawText(numbers[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY - Y_OFFSET, linePaint);
-            //绘制名称
-            canvas.drawText(names[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY + dataTextBound.height() / 2, linePaint);
-        } else if (degree > 270 && degree < 360) {//4象限
+
+            horEndX = endX - HOR_LINE_LENGTH;
+            horEndY = endY;
+
+            numberStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            numberStartY = endY - Y_OFFSET;
+
+            textStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            textStartY = endY + dataTextBound.height()+Y_OFFSET;
+        } else if (degree > 270 && degree < 360) {//四象限
             endX = startX - SlASH_LINE_OFFSET;
             endY = startY - SlASH_LINE_OFFSET;
-            //绘制折线
-            canvas.drawLine(startX, startY, endX, endY, linePaint);
-            //绘制横线
-            canvas.drawLine(endX, endY, endX - HOR_LINE_LENGTH, endY, linePaint);
-            //绘制数字
-            canvas.drawText(numbers[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY - Y_OFFSET, linePaint);
-            //绘制名称
-            canvas.drawText(names[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY + dataTextBound.height() / 2, linePaint);
+
+            horEndX = endX - HOR_LINE_LENGTH;
+            horEndY = endY;
+
+            numberStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            numberStartY = endY - Y_OFFSET;
+
+            textStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            textStartY = endY + dataTextBound.height()+Y_OFFSET;
         } else if (degree == 360) {
             startX = centerX;
             startY = centerY - radius;
             endX = startX - SlASH_LINE_OFFSET;
             endY = startY - SlASH_LINE_OFFSET;
-            //绘制折线
-            canvas.drawLine(startX, startY, endX, endY, linePaint);
-            //绘制横线
-            canvas.drawLine(endX, endY, endX - HOR_LINE_LENGTH, endY, linePaint);
-            //绘制数字
-            canvas.drawText(numbers[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY - Y_OFFSET, linePaint);
-            //绘制名称
-            canvas.drawText(names[i] + "", endX - HOR_LINE_LENGTH + X_OFFSET, endY + dataTextBound.height() / 2, linePaint);
-        } else if (degree > 360) {//1象限
+
+            horEndX = endX - HOR_LINE_LENGTH;
+            horEndY = endY;
+
+            numberStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            numberStartY = endY - Y_OFFSET;
+
+            textStartX = endX - HOR_LINE_LENGTH + X_OFFSET;
+            textStartY = endY + dataTextBound.height()+Y_OFFSET;
+
+        } else if (degree > 360) {//一象限
             endX = startX + SlASH_LINE_OFFSET;
             endY = startY - SlASH_LINE_OFFSET;
-            //绘制折线
-            canvas.drawLine(startX, startY, endX, endY, linePaint);
-            //绘制横线
-            canvas.drawLine(endX, endY, endX + HOR_LINE_LENGTH, endY, linePaint);
-            //绘制数字
-            canvas.drawText(numbers[i] + "", endX + X_OFFSET, endY - Y_OFFSET, linePaint);
-            //绘制名称
-            canvas.drawText(names[i] + "", endX + X_OFFSET, endY + dataTextBound.height() / 2, linePaint);
+
+            horEndX = endX + HOR_LINE_LENGTH;
+            horEndY = endY;
+
+            numberStartX = endX + X_OFFSET;
+            numberStartY = endY - Y_OFFSET;
+
+            textStartX = endX + X_OFFSET;
+            textStartY = endY + dataTextBound.height()+Y_OFFSET;
+
         }
+        //绘制线段和数据
+        drawLineAndData(canvas, i, startX, startY, endX, endY,
+                horEndX, horEndY, numberStartX, numberStartY, textStartX, textStartY);
     }
+
+    /**
+     * 绘制数据
+     *
+     * @param canvas       画布
+     * @param i            下标
+     * @param slashStartX  斜线开始X坐标
+     * @param slashStartY  斜线开始Y坐标
+     * @param slashEndX    斜线结束X坐标
+     * @param slashEndY    斜线结束Y坐标
+     * @param horEndX      横线结束X坐标
+     * @param horEndY      横线结束Y坐标
+     * @param numberStartX 数字开始X坐标
+     * @param numberStartY 数字开始Y坐标
+     * @param textStartX   文本开始X坐标
+     * @param textStartY   文本开始Y坐标
+     */
+    private void drawLineAndData(Canvas canvas, int i, float slashStartX, float slashStartY,
+                                 float slashEndX, float slashEndY,
+                                 float horEndX, float horEndY,
+                                 float numberStartX, float numberStartY,
+                                 float textStartX, float textStartY) {
+        //绘制折线
+        canvas.drawLine(slashStartX, slashStartY, slashEndX, slashEndY, linePaint);
+        //绘制横线
+        canvas.drawLine(slashEndX, slashEndY, horEndX, horEndY, linePaint);
+        //绘制数字
+        canvas.drawText(numbers[i] + "", numberStartX, numberStartY, linePaint);
+        //绘制文字
+        canvas.drawText(names[i] + "", textStartX, textStartY, linePaint);
+    }
+
 
     /**
      * 绘制扇形
@@ -396,7 +447,7 @@ public class PieView extends View {
      * @param numbers 数字数组
      * @param names   名称数组
      */
-    public void setData(@NonNull int[] numbers, @NonNull String[] names) {
+    public void setData(int[] numbers, String[] names) {
         if (numbers == null || numbers.length == 0 || names == null || names.length == 0) {
             return;
         }
@@ -413,7 +464,7 @@ public class PieView extends View {
             colors[i] = randomColor();
         }
         textPaint.getTextBounds(sum + "", 0, (sum + "").length(), centerTextBound);
-        textPaint.getTextBounds(names[0] + "", 0, (names[0] + "").length(), dataTextBound);
+        linePaint.getTextBounds(names[0] + "", 0, (names[0] + "").length(), dataTextBound);
         invalidate();
     }
 }
