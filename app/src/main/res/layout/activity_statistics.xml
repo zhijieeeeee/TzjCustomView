@@ -3,13 +3,16 @@
     xmlns:don="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <com.tzj.tzjcustomview.statistics.PieView
         android:id="@+id/pieView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        don:textSize="20sp"
-        don:circleWidth="30dp"
-        don:textColor="#ff00ff"/>
+        don:centerTextColor="#000000"
+        don:centerTextSize="24sp"
+        don:circleWidth="20dp"
+        don:dataTextColor="#ff00ff"
+        don:dataTextSize="12sp" />
 </LinearLayout>
