@@ -50,5 +50,6 @@ dependencies {
     compile 'jameson.io.library:library:0.0.1'
 
     compile 'com.don:clockviewlibrary:1.0.1'
+    compile 'com.don:pieviewlibrary:1.0.0'
 
 }
