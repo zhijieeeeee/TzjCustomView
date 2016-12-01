@@ -65,6 +65,8 @@
         <activity android:name=".databinding.DataBindingTestActivity" />
         <activity android:name=".verificationview.VerificationActivity" />
         <activity android:name=".statistics.StatisticsActivity" />
+        <activity android:name=".DrawableActivity" />
+
         <service
             android:name=".aidl.TestService"
             android:process=":remote" />
@@ -82,6 +84,8 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".MyService" />
     </application>
 
 </manifest>

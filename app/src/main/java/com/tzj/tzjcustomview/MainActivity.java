@@ -50,7 +50,8 @@ public class MainActivity extends SwipeBackActivity {
             "滑动冲突解决测试(横纵交替)",
             "DataBinding",
             "验证码",
-            "统计", "1", "1", "1", "1"
+            "统计",
+            "各种Drawable", "1", "1", "1"
     };
 
     @Override
@@ -165,6 +166,9 @@ public class MainActivity extends SwipeBackActivity {
                     case 23:
                         startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
                         break;
+                    case 24:
+                        startActivity(new Intent(MainActivity.this, DrawableActivity.class));
+                        break;
                 }
             }
         });
@@ -185,6 +189,8 @@ public class MainActivity extends SwipeBackActivity {
 
         //获得注解
         AnnotationUse.use(this);
+
+        startService(new Intent(this, MyService.class));
     }
 
     @TestAnnotation(
