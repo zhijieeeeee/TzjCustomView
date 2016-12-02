@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -32,6 +33,7 @@ import android.widget.LinearLayout;
  */
 public class PropertyAnimatorActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Button btn_color;
     private Button btn_alpha;
     private Button btn_rotate;
     private Button btn_scale;
@@ -48,6 +50,7 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actiivty_porperty_animation);
 
+        btn_color= (Button) findViewById(R.id.btn_color);
         btn_alpha = (Button) findViewById(R.id.btn_alpha);
         btn_rotate = (Button) findViewById(R.id.btn_rotate);
         btn_scale = (Button) findViewById(R.id.btn_scale);
@@ -57,6 +60,7 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
         btn_animatorset = (Button) findViewById(R.id.btn_animatorset);
         btn_xml = (Button) findViewById(R.id.btn_xml);
 
+        btn_color.setOnClickListener(this);
         btn_alpha.setOnClickListener(this);
         btn_rotate.setOnClickListener(this);
         btn_scale.setOnClickListener(this);
@@ -195,6 +199,14 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
                 Animator animator = AnimatorInflater.loadAnimator(this, R.animator.animator_scalex);
                 animator.setTarget(v);
                 animator.start();
+                break;
+            case R.id.btn_color:
+                ObjectAnimator colorAnim=ObjectAnimator.ofInt(v,"backgroundColor",0xffff8080,0xff8080ff);
+                colorAnim.setDuration(3000);
+                colorAnim.setEvaluator(new ArgbEvaluator());
+                colorAnim.setRepeatCount(ValueAnimator.INFINITE);
+                colorAnim.setRepeatMode(ValueAnimator.REVERSE);
+                colorAnim.start();
                 break;
         }
     }
