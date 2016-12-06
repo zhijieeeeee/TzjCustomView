@@ -191,6 +191,16 @@ public class MainActivity extends SwipeBackActivity {
         AnnotationUse.use(this);
 
         startService(new Intent(this, MyService.class));
+
+        //IntentService,顺序执行耗时操作
+        Intent service = new Intent(this, MyIntentService.class);
+        service.putExtra("task_action", "T1");
+        startService(service);
+        service.putExtra("task_action", "T2");
+        startService(service);
+        service.putExtra("task_action", "T3");
+        startService(service);
+
     }
 
     @TestAnnotation(
