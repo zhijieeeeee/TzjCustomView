@@ -136,7 +136,7 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
             case R.id.btn_rotate:
                 ObjectAnimator rotateObj = ObjectAnimator.ofFloat(
                         v,
-                        "rotation",//rotation,rotationX,rotationY
+                        "rotationY",//rotation,rotationX,rotationY
                         180);
                 rotateObj.setDuration(2000);
                 rotateObj.start();
