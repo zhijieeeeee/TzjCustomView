@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!--clipToPadding="false"可以让ListView滑动到padding的范围内-->
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutAnimation="@anim/la_listview"/>
+        android:clipToPadding="false"
+        android:layoutAnimation="@anim/la_listview"
+        android:paddingTop="20dp" />
 
     <ImageView
         android:id="@+id/iv_empty"
