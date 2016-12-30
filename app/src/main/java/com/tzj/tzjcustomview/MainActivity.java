@@ -17,9 +17,14 @@ import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
 import com.tzj.tzjcustomview.annotation.TestAnnotation;
 import com.tzj.tzjcustomview.databinding.DataBindingTestActivity;
 import com.tzj.tzjcustomview.intercepttest.solvexy.SolveXYActivity;
+import com.tzj.tzjcustomview.proxy.Operate;
+import com.tzj.tzjcustomview.proxy.OperateImpl;
+import com.tzj.tzjcustomview.proxy.TestInvocationHandler;
 import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
 import com.tzj.tzjcustomview.statistics.StatisticsActivity;
 import com.tzj.tzjcustomview.verificationview.VerificationActivity;
+
+import java.lang.reflect.Proxy;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -200,6 +205,16 @@ public class MainActivity extends SwipeBackActivity {
         startService(service);
         service.putExtra("task_action", "T3");
         startService(service);
+
+        //动态代理
+        TestInvocationHandler testInvocationHandler = new TestInvocationHandler(new OperateImpl());
+        Operate operate = (Operate) (Proxy.newProxyInstance(
+                Operate.class.getClassLoader(),
+                new Class[]{Operate.class},
+                testInvocationHandler));
+        operate.op1();
+        operate.op2();
+        operate.op3();
 
     }
 
