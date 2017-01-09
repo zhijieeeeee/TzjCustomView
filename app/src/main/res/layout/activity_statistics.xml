@@ -15,7 +15,7 @@
         don:dataTextColor="#ff00ff"
         don:dataTextSize="12sp" />
 
-    <com.don.pieviewlibrary.PieView
+    <com.don.pieviewlibrary.PieView2
         android:id="@+id/pieView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
