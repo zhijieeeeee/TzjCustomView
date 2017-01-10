@@ -216,6 +216,8 @@ public class MainActivity extends SwipeBackActivity {
         operate.op2();
         operate.op3();
 
+        throw new RuntimeException("测试异常");
+
     }
 
     @TestAnnotation(
