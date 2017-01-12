@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.don.pieviewlibrary.PieView
+    <com.don.pieviewlibrary.LinePieView
         android:id="@+id/pieView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         don:dataTextColor="#ff00ff"
         don:dataTextSize="12sp" />
 
-    <com.don.pieviewlibrary.PieView2
+    <com.don.pieviewlibrary.AnimationPercentPieView
         android:id="@+id/pieView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
