@@ -91,7 +91,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
         //写入文件
         try {
-            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+            PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file,true)));
             printExceptionInfo(pw, e);
             pw.close();
         } catch (Exception e1) {
