@@ -15,6 +15,9 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+
+        //解决方法数越界,defaultConfig，dependencies，Application配置
+        multiDexEnabled true;
     }
     buildTypes {
         release {
@@ -52,4 +55,6 @@ dependencies {
     compile 'com.don:clockviewlibrary:1.0.1'
     compile 'com.zhijieeeeee:pieviewlibrary:2.0.1'
 
+    //解决方法数越界,defaultConfig，dependencies，Application配置
+    compile 'com.android.support:multidex:1.0.0'
 }
