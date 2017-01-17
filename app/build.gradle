@@ -57,4 +57,9 @@ dependencies {
 
     //解决方法数越界,defaultConfig，dependencies，Application配置
     compile 'com.android.support:multidex:1.0.0'
+
+    //leakcanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }
