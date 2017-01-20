@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.tzj.tzjcustomview.aidl.TestAidlActivity;
+import com.tzj.tzjcustomview.andfix.AndFixActivity;
 import com.tzj.tzjcustomview.annotation.AnnotationUse;
 import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
 import com.tzj.tzjcustomview.annotation.TestAnnotation;
@@ -56,7 +57,8 @@ public class MainActivity extends SwipeBackActivity {
             "DataBinding",
             "验证码",
             "统计",
-            "各种Drawable", "1", "1", "1"
+            "各种Drawable",
+            "AndFix热补丁修复", "1", "1"
     };
 
     @Override
@@ -173,6 +175,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 24:
                         startActivity(new Intent(MainActivity.this, DrawableActivity.class));
+                        break;
+                    case 25:
+                        startActivity(new Intent(MainActivity.this, AndFixActivity.class));
                         break;
                 }
             }

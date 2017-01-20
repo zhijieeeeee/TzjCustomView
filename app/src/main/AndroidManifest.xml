@@ -11,6 +11,10 @@
     <!--设置拥有对应权限-->
     <uses-permission android:name="com.tzj.tzjcustomview.permission.ACCESS_BOOK_SERVICE" />
 
+
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -67,6 +71,7 @@
         <activity android:name=".verificationview.VerificationActivity" />
         <activity android:name=".statistics.StatisticsActivity" />
         <activity android:name=".DrawableActivity" />
+        <activity android:name=".andfix.AndFixActivity"/>
 
         <service
             android:name=".aidl.TestService"
