@@ -18,6 +18,7 @@ import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
 import com.tzj.tzjcustomview.annotation.TestAnnotation;
 import com.tzj.tzjcustomview.databinding.DataBindingTestActivity;
 import com.tzj.tzjcustomview.intercepttest.solvexy.SolveXYActivity;
+import com.tzj.tzjcustomview.lottie.LottieActivity;
 import com.tzj.tzjcustomview.proxy.Operate;
 import com.tzj.tzjcustomview.proxy.OperateImpl;
 import com.tzj.tzjcustomview.proxy.TestInvocationHandler;
@@ -58,7 +59,8 @@ public class MainActivity extends SwipeBackActivity {
             "验证码",
             "统计",
             "各种Drawable",
-            "AndFix热补丁修复", "1", "1"
+            "AndFix热补丁修复",
+            "Lottie", "1"
     };
 
     @Override
@@ -178,6 +180,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 25:
                         startActivity(new Intent(MainActivity.this, AndFixActivity.class));
+                        break;
+                    case 26:
+                        startActivity(new Intent(MainActivity.this, LottieActivity.class));
                         break;
                 }
             }

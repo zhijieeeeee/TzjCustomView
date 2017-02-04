@@ -17,7 +17,7 @@ public class MyService extends Service {
 
     @Override
     public void onCreate() {
-        Toast.makeText(this,"启动了",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"启动了",Toast.LENGTH_SHORT).show();
         super.onCreate();
     }
 

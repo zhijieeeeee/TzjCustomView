@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:layoutAnimation="@anim/la_listview"
         android:paddingTop="20dp" />
+    <!--android:layoutAnimation="@anim/la_listview"-->
 
     <ImageView
         android:id="@+id/iv_empty"

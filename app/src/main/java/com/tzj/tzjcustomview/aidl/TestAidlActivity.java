@@ -90,6 +90,7 @@ public class TestAidlActivity extends AppCompatActivity {
             }
         }
         unbindService(serviceConnection);
+        iOnNewBookArrivedListener=null;
         super.onDestroy();
     }
 

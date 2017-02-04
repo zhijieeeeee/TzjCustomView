@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.tzj.tzjcustomview"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -65,4 +65,7 @@ dependencies {
 
     //阿里巴巴AndFix热补丁修复
     compile 'com.alipay.euler:andfix:0.5.0@aar'
+
+    //Lottie
+    compile 'com.airbnb.android:lottie:1.0.1'
 }

@@ -71,7 +71,8 @@
         <activity android:name=".verificationview.VerificationActivity" />
         <activity android:name=".statistics.StatisticsActivity" />
         <activity android:name=".DrawableActivity" />
-        <activity android:name=".andfix.AndFixActivity"/>
+        <activity android:name=".andfix.AndFixActivity" />
+        <activity android:name=".lottie.LottieActivity" />
 
         <service
             android:name=".aidl.TestService"
