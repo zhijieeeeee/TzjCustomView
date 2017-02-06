@@ -76,6 +76,8 @@ public class TriangleWithCircleView extends View {
     private final int CIRCLE_2 = 12;
     private final int CIRCLE_3 = 16;
 
+    private ObjectAnimator objectAnimator;
+
     public TriangleWithCircleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -170,10 +172,14 @@ public class TriangleWithCircleView extends View {
      * 开始旋转
      */
     private void startRotation() {
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "rotation", 0, 360);
+        objectAnimator = ObjectAnimator.ofFloat(this, "rotation", 0, 360);
         objectAnimator.setDuration(3000);
         objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator.setInterpolator(new LinearInterpolator());
         objectAnimator.start();
+    }
+
+    public void stop(){
+        objectAnimator.cancel();
     }
 }

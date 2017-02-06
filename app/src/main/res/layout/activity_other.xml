@@ -11,6 +11,7 @@
         android:layout_gravity="center_horizontal" />
 
     <com.tzj.tzjcustomview.triangleview.TriangleWithCircleView
+        android:id="@+id/tView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

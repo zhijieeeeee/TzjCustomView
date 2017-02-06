@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewStub;
 import android.view.Window;
 
+import com.tzj.tzjcustomview.loadingview.MyShapeLoadingView;
+import com.tzj.tzjcustomview.triangleview.TriangleWithCircleView;
+
 /**
  * <p> FileName： OtherActivity</p>
  * <p>
@@ -19,6 +22,10 @@ import android.view.Window;
  * @createdate 2016-02-18 13:47
  */
 public class OtherActivity extends AppCompatActivity {
+
+    TriangleWithCircleView tView;
+    MyShapeLoadingView loading_shape;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +35,15 @@ public class OtherActivity extends AppCompatActivity {
 
 //        ((ViewStub) findViewById(R.id.vs_empty)).setVisibility(View.VISIBLE);
 //        ((ViewStub) findViewById(R.id.vs_empty)).inflate();
+
+        tView = (TriangleWithCircleView) findViewById(R.id.tView);
+        loading_shape= (MyShapeLoadingView) findViewById(R.id.loading_shape);
+    }
+
+    @Override
+    protected void onDestroy() {
+        tView.stop();
+        loading_shape.stop();
+        super.onDestroy();
     }
 }

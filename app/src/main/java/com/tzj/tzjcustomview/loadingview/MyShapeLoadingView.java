@@ -46,6 +46,13 @@ public class MyShapeLoadingView extends FrameLayout {
      */
     private int distance;
 
+    private AnimatorSet upAnimatorSet;
+    private AnimatorSet downAnimatorSet;
+
+    ObjectAnimator transAnim;
+    ObjectAnimator shadowScaleAnim;
+    ObjectAnimator rotateAnim;
+
     public MyShapeLoadingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();
@@ -66,9 +73,9 @@ public class MyShapeLoadingView extends FrameLayout {
      * 上升
      */
     private void up() {
-        ObjectAnimator transAnim = ObjectAnimator.ofFloat(shapeView, "translationY", distance, 0);
-        ObjectAnimator shadowScaleAnim = ObjectAnimator.ofFloat(iv_shadow, "scaleX", 0.2f, 1);
-        ObjectAnimator rotateAnim = null;
+        transAnim = ObjectAnimator.ofFloat(shapeView, "translationY", distance, 0);
+        shadowScaleAnim = ObjectAnimator.ofFloat(iv_shadow, "scaleX", 0.2f, 1);
+        rotateAnim = null;
         //判断形状
         switch (shapeView.getShape()) {
             case Circle:
@@ -86,11 +93,11 @@ public class MyShapeLoadingView extends FrameLayout {
         shadowScaleAnim.setDuration(ANIM_DURATION);
         transAnim.setInterpolator(new DecelerateInterpolator(1.2f));
         rotateAnim.setInterpolator(new DecelerateInterpolator(1.2f));
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.setDuration(ANIM_DURATION);
+        upAnimatorSet = new AnimatorSet();
+        upAnimatorSet.setDuration(ANIM_DURATION);
 
-        animatorSet.playTogether(shadowScaleAnim, transAnim, rotateAnim);
-        animatorSet.addListener(new Animator.AnimatorListener() {
+        upAnimatorSet.playTogether(shadowScaleAnim, transAnim, rotateAnim);
+        upAnimatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
 
@@ -111,23 +118,23 @@ public class MyShapeLoadingView extends FrameLayout {
 
             }
         });
-        animatorSet.start();
+        upAnimatorSet.start();
     }
 
     /**
      * 下降
      */
     private void down() {
-        ObjectAnimator transAnim = ObjectAnimator.ofFloat(shapeView, "translationY", 0, distance);
-        ObjectAnimator shadowScaleAnim = ObjectAnimator.ofFloat(iv_shadow, "scaleX", 1, 0.2f);
+        transAnim = ObjectAnimator.ofFloat(shapeView, "translationY", 0, distance);
+        shadowScaleAnim = ObjectAnimator.ofFloat(iv_shadow, "scaleX", 1, 0.2f);
         transAnim.setDuration(ANIM_DURATION);
         shadowScaleAnim.setDuration(ANIM_DURATION);
         transAnim.setInterpolator(new AccelerateInterpolator(1.2f));
         shadowScaleAnim.setInterpolator(new AccelerateInterpolator(1.2f));
-        AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.setDuration(ANIM_DURATION);
-        animatorSet.playTogether(shadowScaleAnim, transAnim);
-        animatorSet.addListener(new Animator.AnimatorListener() {
+        downAnimatorSet = new AnimatorSet();
+        downAnimatorSet.setDuration(ANIM_DURATION);
+        downAnimatorSet.playTogether(shadowScaleAnim, transAnim);
+        downAnimatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
 
@@ -149,7 +156,7 @@ public class MyShapeLoadingView extends FrameLayout {
 
             }
         });
-        animatorSet.start();
+        downAnimatorSet.start();
     }
 
     /**
@@ -158,5 +165,13 @@ public class MyShapeLoadingView extends FrameLayout {
     public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    public void stop() {
+        upAnimatorSet.cancel();
+        downAnimatorSet.cancel();
+        transAnim.cancel();
+        shadowScaleAnim.cancel();
+        rotateAnim.cancel();
     }
 }
