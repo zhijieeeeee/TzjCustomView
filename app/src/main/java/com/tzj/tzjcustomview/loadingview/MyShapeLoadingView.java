@@ -167,11 +167,17 @@ public class MyShapeLoadingView extends FrameLayout {
         return (int) (dpValue * scale + 0.5f);
     }
 
-    public void stop() {
+    //当包含此view的Activity或者当前view被remove时，view的onDetachedFromWindow会被调用
+    //与此方法对应的是onAttachedToWindow
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        //停止动画，防止内存泄漏
         upAnimatorSet.cancel();
         downAnimatorSet.cancel();
         transAnim.cancel();
         shadowScaleAnim.cancel();
         rotateAnim.cancel();
     }
+
 }

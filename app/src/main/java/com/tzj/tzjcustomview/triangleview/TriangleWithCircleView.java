@@ -179,7 +179,13 @@ public class TriangleWithCircleView extends View {
         objectAnimator.start();
     }
 
-    public void stop(){
+    //当包含此view的Activity或者当前view被remove时，view的onDetachedFromWindow会被调用
+    //与此方法对应的是onAttachedToWindow
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        //停止动画，防止内存泄漏
         objectAnimator.cancel();
     }
+
 }
