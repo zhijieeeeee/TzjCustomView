@@ -7,6 +7,7 @@ import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -50,7 +51,7 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actiivty_porperty_animation);
 
-        btn_color= (Button) findViewById(R.id.btn_color);
+        btn_color = (Button) findViewById(R.id.btn_color);
         btn_alpha = (Button) findViewById(R.id.btn_alpha);
         btn_rotate = (Button) findViewById(R.id.btn_rotate);
         btn_scale = (Button) findViewById(R.id.btn_scale);
@@ -82,6 +83,13 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
                 new LayoutAnimationController(scaleAnimation, 0.5f);
         layoutAnimationController.setOrder(LayoutAnimationController.ORDER_NORMAL);
         ll.setLayoutAnimation(layoutAnimationController);
+
+        //自定义估值器
+        Point point1 = new Point(0, 0);
+        Point point2 = new Point(300, 300);
+        ValueAnimator anim = ValueAnimator.ofObject(new PointEvaluator(), point1, point2);
+        anim.setDuration(5000);
+        anim.start();
     }
 
     @Override
@@ -90,11 +98,9 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
             case R.id.btn_alpha:
 
 
-
                 //如果有无线循环的属性动画，要在activity销毁的时候停止，否则会发生内存泄漏，
                 //因为动画持有View,View又持有Activity
                 //animator.cancel()
-
 
 
                 ObjectAnimator alphaObj = ObjectAnimator.ofFloat(
@@ -201,7 +207,7 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
                 animator.start();
                 break;
             case R.id.btn_color:
-                ObjectAnimator colorAnim=ObjectAnimator.ofInt(v,"backgroundColor",0xffff8080,0xff8080ff);
+                ObjectAnimator colorAnim = ObjectAnimator.ofInt(v, "backgroundColor", 0xffff8080, 0xff8080ff);
                 colorAnim.setDuration(3000);
                 colorAnim.setEvaluator(new ArgbEvaluator());
                 colorAnim.setRepeatCount(ValueAnimator.INFINITE);
@@ -226,6 +232,47 @@ public class PropertyAnimatorActivity extends AppCompatActivity implements View.
         public void setHeight(int height) {
             mView.getLayoutParams().height = height;
             mView.requestLayout();
+        }
+    }
+
+
+    class PointEvaluator implements TypeEvaluator {
+
+        @Override
+        public Object evaluate(float fraction, Object startValue, Object endValue) {
+            Point startPoint = (Point) startValue;
+            Point endPoint = (Point) endValue;
+
+            float currentX = startPoint.getX() + fraction * (endPoint.getX() - startPoint.getX());
+            float currentY = startPoint.getY() + fraction * (endPoint.getY() - startPoint.getY());
+
+            return new Point(currentX, currentY);
+        }
+    }
+
+    class Point {
+        private float x;
+        private float y;
+
+        public Point(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public float getX() {
+            return x;
+        }
+
+        public void setX(float x) {
+            this.x = x;
+        }
+
+        public float getY() {
+            return y;
+        }
+
+        public void setY(float y) {
+            this.y = y;
         }
     }
 }
