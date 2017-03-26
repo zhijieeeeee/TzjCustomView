@@ -73,6 +73,7 @@
         <activity android:name=".DrawableActivity" />
         <activity android:name=".andfix.AndFixActivity" />
         <activity android:name=".lottie.LottieActivity" />
+        <activity android:name=".DecorViewActivity"/>
 
         <service
             android:name=".aidl.TestService"
