@@ -61,7 +61,8 @@ public class MainActivity extends SwipeBackActivity {
             "各种Drawable",
             "AndFix热补丁修复",
             "Lottie",
-            "DecorView和透明状态栏"
+            "DecorView和透明状态栏",
+            "聊天输入框"
     };
 
     @Override
@@ -187,6 +188,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 27:
                         startActivity(new Intent(MainActivity.this, DecorViewActivity.class));
+                        break;
+                    case 28:
+                        startActivity(new Intent(MainActivity.this, InputActivity.class));
                         break;
                 }
             }

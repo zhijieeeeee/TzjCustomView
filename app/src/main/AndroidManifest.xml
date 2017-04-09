@@ -74,6 +74,7 @@
         <activity android:name=".andfix.AndFixActivity" />
         <activity android:name=".lottie.LottieActivity" />
         <activity android:name=".DecorViewActivity"/>
+        <activity android:name=".InputActivity"/>
 
         <service
             android:name=".aidl.TestService"

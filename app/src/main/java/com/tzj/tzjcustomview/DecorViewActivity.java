@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
@@ -17,6 +18,16 @@ import android.widget.ScrollView;
  */
 
 public class DecorViewActivity extends AppCompatActivity {
+
+    //不设置透明状态栏且不设置adjustPan或adjustResize，Scrollview中editText会自动被软键盘弹起
+    //不设置透明状态栏但设置adjustPan，ScrollView和标题栏都会被顶上去
+    //不设置透明状态栏但设置adjustResize，Scrollview中editText会自动被软键盘弹起
+    // (和不设置adjustPan或adjustResize一样 )
+
+
+    //设置透明状态栏并且不设置adjustPan或adjustResize,没有任何效果
+    //设置透明状态栏和adjustPan,ScrollView和标题栏都会被顶上去
+    //设置透明状态栏和adjustResize,没有任何效果
 
     private ScrollView sv;
     private EditText et;
@@ -61,7 +72,7 @@ public class DecorViewActivity extends AppCompatActivity {
 //            getWindow().setStatusBarColor(Color.TRANSPARENT);
 //        }
 
-        //解决标题被软键盘顶上去
+        //解决透明状态栏下输入框被软键盘遮住
         sv = (ScrollView) findViewById(R.id.sv);
         et = (EditText) findViewById(R.id.et);
         et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -88,6 +99,7 @@ public class DecorViewActivity extends AppCompatActivity {
                 decorView.getWindowVisibleDisplayFrame(rect);
                 int screenHeight = ScreenUtil.getScreenHeight(DecorViewActivity.this);
                 int heightDifference = screenHeight - rect.bottom;//计算软键盘占有的高度  = 屏幕高度 - 视图可见高度
+                Log.i("MyLog","heightDifference="+heightDifference);
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) sv.getLayoutParams();
                 layoutParams.setMargins(0, 0, 0, heightDifference);//设置sv的marginBottom的值为软键盘占有的高度即可
                 sv.requestLayout();

@@ -47,11 +47,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="我是文本我是文本我是文本我是文本"/>
+
             <EditText
                 android:id="@+id/et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="300dp"
                 android:hint="请输入" />
         </LinearLayout>
     </ScrollView>
