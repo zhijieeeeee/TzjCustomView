@@ -75,6 +75,7 @@
         <activity android:name=".lottie.LottieActivity" />
         <activity android:name=".DecorViewActivity"/>
         <activity android:name=".InputActivity"/>
+        <activity android:name=".scrolltextview.ScrollTextViewActivity"/>
 
         <service
             android:name=".aidl.TestService"

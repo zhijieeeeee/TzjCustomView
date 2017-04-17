@@ -23,6 +23,7 @@ import com.tzj.tzjcustomview.proxy.Operate;
 import com.tzj.tzjcustomview.proxy.OperateImpl;
 import com.tzj.tzjcustomview.proxy.TestInvocationHandler;
 import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
+import com.tzj.tzjcustomview.scrolltextview.ScrollTextViewActivity;
 import com.tzj.tzjcustomview.statistics.StatisticsActivity;
 import com.tzj.tzjcustomview.verificationview.VerificationActivity;
 
@@ -62,7 +63,8 @@ public class MainActivity extends SwipeBackActivity {
             "AndFix热补丁修复",
             "Lottie",
             "DecorView和透明状态栏",
-            "聊天输入框"
+            "聊天输入框",
+            "上滚TextView"
     };
 
     @Override
@@ -191,6 +193,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 28:
                         startActivity(new Intent(MainActivity.this, InputActivity.class));
+                        break;
+                    case 29:
+                        startActivity(new Intent(MainActivity.this, ScrollTextViewActivity.class));
                         break;
                 }
             }
