@@ -76,6 +76,7 @@
         <activity android:name=".DecorViewActivity"/>
         <activity android:name=".InputActivity"/>
         <activity android:name=".scrolltextview.ScrollTextViewActivity"/>
+        <activity android:name=".WheelViewActivity"/>
 
         <service
             android:name=".aidl.TestService"

@@ -26,6 +26,7 @@ import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
 import com.tzj.tzjcustomview.scrolltextview.ScrollTextViewActivity;
 import com.tzj.tzjcustomview.statistics.StatisticsActivity;
 import com.tzj.tzjcustomview.verificationview.VerificationActivity;
+import com.tzj.tzjcustomview.wheelviewtest.WheelView;
 
 import java.lang.reflect.Proxy;
 
@@ -64,7 +65,8 @@ public class MainActivity extends SwipeBackActivity {
             "Lottie",
             "DecorView和透明状态栏",
             "聊天输入框",
-            "上滚TextView"
+            "上滚TextView",
+            "修改WheelView",
     };
 
     @Override
@@ -76,7 +78,7 @@ public class MainActivity extends SwipeBackActivity {
 
         ListView lv = (ListView) findViewById(R.id.lv);
         //给ListView设置无数据时显示的布局
-        lv.setEmptyView(findViewById(R.id.iv_empty));
+//        lv.setEmptyView(findViewById(R.id.iv_empty));
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, item);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -196,6 +198,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 29:
                         startActivity(new Intent(MainActivity.this, ScrollTextViewActivity.class));
+                        break;
+                    case 30:
+                        startActivity(new Intent(MainActivity.this, WheelViewActivity.class));
                         break;
                 }
             }
