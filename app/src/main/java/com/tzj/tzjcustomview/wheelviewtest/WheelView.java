@@ -314,15 +314,15 @@ public class WheelView extends ScrollView {
 
         if (null == paint) {
             paint = new Paint();
-            paint.setColor(Color.parseColor("#f74646"));
+            paint.setColor(Color.parseColor("#e5e5e5"));
             paint.setStrokeWidth(dip2px(1f));
         }
 
         background = new Drawable() {
             @Override
             public void draw(Canvas canvas) {
-                canvas.drawLine(viewWidth * 1 / 6, obtainSelectedAreaBorder()[0], viewWidth * 5 / 6, obtainSelectedAreaBorder()[0], paint);
-                canvas.drawLine(viewWidth * 1 / 6, obtainSelectedAreaBorder()[1], viewWidth * 5 / 6, obtainSelectedAreaBorder()[1], paint);
+                canvas.drawLine(0, obtainSelectedAreaBorder()[0], viewWidth, obtainSelectedAreaBorder()[0], paint);
+                canvas.drawLine(0, obtainSelectedAreaBorder()[1], viewWidth , obtainSelectedAreaBorder()[1], paint);
             }
 
             @Override

@@ -21,7 +21,7 @@ public class WheelViewActivity extends AppCompatActivity {
         setContentView(R.layout.wheelview_dialog);
 
         WheelView wv = (WheelView)findViewById(R.id.wheelview);
-        wv.setOffset(2);
+        wv.setOffset(1);
         ArrayList<String> list = new ArrayList<>();
 //        for (SupportBankModel supportBankModel : banks) {
 //            list.add(supportBankModel.fb_bankname);

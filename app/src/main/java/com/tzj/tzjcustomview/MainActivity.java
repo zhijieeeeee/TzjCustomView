@@ -67,6 +67,7 @@ public class MainActivity extends SwipeBackActivity {
             "聊天输入框",
             "上滚TextView",
             "修改WheelView",
+            "MoocView",
     };
 
     @Override
@@ -201,6 +202,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 30:
                         startActivity(new Intent(MainActivity.this, WheelViewActivity.class));
+                        break;
+                    case 31:
+                        startActivity(new Intent(MainActivity.this, MoocActivity.class));
                         break;
                 }
             }

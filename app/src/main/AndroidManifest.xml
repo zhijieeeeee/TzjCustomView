@@ -73,10 +73,11 @@
         <activity android:name=".DrawableActivity" />
         <activity android:name=".andfix.AndFixActivity" />
         <activity android:name=".lottie.LottieActivity" />
-        <activity android:name=".DecorViewActivity"/>
-        <activity android:name=".InputActivity"/>
-        <activity android:name=".scrolltextview.ScrollTextViewActivity"/>
-        <activity android:name=".WheelViewActivity"/>
+        <activity android:name=".DecorViewActivity" />
+        <activity android:name=".InputActivity" />
+        <activity android:name=".scrolltextview.ScrollTextViewActivity" />
+        <activity android:name=".WheelViewActivity" />
+        <activity android:name=".MoocActivity" />
 
         <service
             android:name=".aidl.TestService"
