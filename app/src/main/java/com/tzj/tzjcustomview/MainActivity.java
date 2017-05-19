@@ -10,6 +10,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.tzj.tzjcustomview.aidl.TestAidlActivity;
 import com.tzj.tzjcustomview.andfix.AndFixActivity;
@@ -76,6 +77,22 @@ public class MainActivity extends SwipeBackActivity {
         setContentView(R.layout.activity_main);
         //是否允许滑动返回
         setSwipeBackEnable(false);
+
+        //获取外部浏览器打开app时传入的参数Start
+        Intent intent = getIntent();
+        if (intent != null) {
+            Uri uri = intent.getData();
+
+            if (uri != null) {
+                String dataString = intent.getDataString();
+                String scheme = uri.getScheme();
+                String host = uri.getHost();
+                String query = uri.getQuery();
+                Toast.makeText(MainActivity.this, "外部浏览器打开时传进来的参数=" + query, Toast.LENGTH_LONG).show();
+            }
+        }
+        //获取外部浏览器打开app时传入的参数End
+
 
         ListView lv = (ListView) findViewById(R.id.lv);
         //给ListView设置无数据时显示的布局
