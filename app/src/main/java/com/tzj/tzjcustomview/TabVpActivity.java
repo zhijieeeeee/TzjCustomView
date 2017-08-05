@@ -1,5 +1,6 @@
 package com.tzj.tzjcustomview;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,7 +9,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.LinearLayout;
+
+import java.lang.reflect.Field;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -24,8 +29,7 @@ public class TabVpActivity extends AppCompatActivity {
     private ViewPager vp;
     private TabLayout tabLayout;
 
-    private String[] title = new String[]{"Page1", "Page2", "Page3",
-            "Page4"};
+    private String[] title = new String[]{"Page1", "Page2"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +38,12 @@ public class TabVpActivity extends AppCompatActivity {
 
         vp = (ViewPager) findViewById(R.id.vp);
         tabLayout = (TabLayout) findViewById(R.id.tab);
+        tabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                setIndicator(tabLayout,30,30);
+            }
+        });
 
         VpAdapter adapter = new VpAdapter(getSupportFragmentManager());
         vp.setAdapter(adapter);
@@ -125,5 +135,36 @@ public class TabVpActivity extends AppCompatActivity {
 
     public int getScreenWith() {
         return getResources().getDisplayMetrics().widthPixels;
+    }
+
+    public void setIndicator(TabLayout tabs, int leftDip, int rightDip) {
+        Class<?> tabLayout = tabs.getClass();
+        Field tabStrip = null;
+        try {
+            tabStrip = tabLayout.getDeclaredField("mTabStrip");
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        tabStrip.setAccessible(true);
+        LinearLayout llTab = null;
+        try {
+            llTab = (LinearLayout) tabStrip.get(tabs);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        int left = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, leftDip, Resources.getSystem().getDisplayMetrics());
+        int right = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rightDip, Resources.getSystem().getDisplayMetrics());
+
+        for (int i = 0; i < llTab.getChildCount(); i++) {
+            View child = llTab.getChildAt(i);
+            child.setPadding(0, 0, 0, 0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+            params.leftMargin = left;
+            params.rightMargin = right;
+            child.setLayoutParams(params);
+            child.invalidate();
+        }
     }
 }

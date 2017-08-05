@@ -92,7 +92,7 @@ public class MoocView extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.parseColor("#ffc9394a"));
         // 获得资源文件
-        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.mooc);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ptr_loading);
         // 设置宽高为图片的宽高
         width = bitmap.getWidth();
         height = bitmap.getHeight();

@@ -39,8 +39,7 @@
                 <category android:name="android.intent.category.BROWSABLE"></category>
 
                 <data
-                    android:host="view"
-                    android:scheme="tzj" />
+                    android:scheme="rydyoucai" />
                 <!--tzj://view-->
             </intent-filter>
         </activity>

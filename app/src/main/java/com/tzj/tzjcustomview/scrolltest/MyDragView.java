@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Scroller;
 
 /**
@@ -14,7 +15,7 @@ import android.widget.Scroller;
  *
  * @author tangzhijie
  */
-public class MyDragView extends View {
+public class MyDragView extends ImageView {
 
     private int lastX;
     private int lastY;

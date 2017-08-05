@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@android:color/holo_red_light"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
@@ -37,29 +38,35 @@
         </LinearLayout>
     </FrameLayout>
 
-    <ScrollView
+
+    <LinearLayout
         android:id="@+id/sv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="20dp"
-                android:text="我是文本我是文本我是文本我是文本"/>
+                android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="300dp"
-                android:hint="请输入" />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="本文本我是文文本我是文本我是文本我是文本我是文我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本" />
+            </LinearLayout>
+        </ScrollView>
+
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入" />
+    </LinearLayout>
 </LinearLayout>
