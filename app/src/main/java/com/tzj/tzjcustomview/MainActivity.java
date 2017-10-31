@@ -110,7 +110,7 @@ public class MainActivity extends SwipeBackActivity {
                         //只要匹配action中的一个就行了
                         intent.setAction("xiu2");
                         //系统会默认添加default的category，所以在manifest中必须也添加default的category
-                        //category要么不设置，要么设置了就要能对应
+                        //下面这个可设置可不设置，因为已经匹配了default
                         intent.addCategory("xiucategory");
                         //data如果没有指定URI，系统会默认content或file
 //                        intent.setDataAndType(Uri.parse("file://abc"),"image/*");
