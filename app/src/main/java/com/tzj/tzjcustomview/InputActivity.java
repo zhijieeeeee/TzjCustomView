@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -34,6 +35,9 @@ public class InputActivity extends AppCompatActivity {
     private InputAdapter adatper;
     private LinearLayout ll_et;
 
+    private TextView tv;
+    private Button btn;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,14 @@ public class InputActivity extends AppCompatActivity {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+        tv = (TextView) findViewById(R.id.tv);
+        btn = (Button) findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv.setText(et.getText());
+            }
+        });
 
         ll_et = (LinearLayout) findViewById(R.id.ll_et);
 
@@ -95,12 +107,11 @@ public class InputActivity extends AppCompatActivity {
                         Log.i("MyLog", "view距离底部=" + viewY);
 
 
-
                         int[] location2 = new int[2];
                         //获取评论框的y坐标
                         ll_et.getLocationOnScreen(location2);
                         Log.i("MyLog", "ll_etY坐标=" + location2[1]);
-                        int etBottom=ScreenUtil.getScreenHeight(InputActivity.this) -location2[1];
+                        int etBottom = ScreenUtil.getScreenHeight(InputActivity.this) - location2[1];
                         Log.i("MyLog", "ll_et距离底部=" + etBottom);
 
 
