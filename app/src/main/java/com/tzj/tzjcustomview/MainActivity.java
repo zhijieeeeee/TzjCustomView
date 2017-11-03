@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tzj.tzjcustomview.aidl.TestAidlActivity;
@@ -18,6 +20,8 @@ import com.tzj.tzjcustomview.annotation.AnnotationUse;
 import com.tzj.tzjcustomview.annotation.OnValueAnnotation;
 import com.tzj.tzjcustomview.annotation.TestAnnotation;
 import com.tzj.tzjcustomview.databinding.DataBindingTestActivity;
+import com.tzj.tzjcustomview.highlighttext.HighlightStringBuilder;
+import com.tzj.tzjcustomview.highlighttext.MyClickableSpan;
 import com.tzj.tzjcustomview.intercepttest.solvexy.SolveXYActivity;
 import com.tzj.tzjcustomview.lottie.LottieActivity;
 import com.tzj.tzjcustomview.proxy.Operate;
@@ -27,7 +31,6 @@ import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
 import com.tzj.tzjcustomview.scrolltextview.ScrollTextViewActivity;
 import com.tzj.tzjcustomview.statistics.StatisticsActivity;
 import com.tzj.tzjcustomview.verificationview.VerificationActivity;
-import com.tzj.tzjcustomview.wheelviewtest.WheelView;
 
 import java.lang.reflect.Proxy;
 
@@ -266,6 +269,25 @@ public class MainActivity extends SwipeBackActivity {
         operate.op3();
 
 //        throw new RuntimeException("捕获测试异常2222222222222222222222");
+
+        TextView tv = (TextView) findViewById(R.id.tv);
+        tv.setMovementMethod(LinkMovementMethod.getInstance());
+        HighlightStringBuilder highlightStringBuilder = new HighlightStringBuilder();
+        highlightStringBuilder
+                .setContent("我在测试，点我少数哦爱好左上角愛哦也可以点我")
+                .setTextView(tv)
+                .setHighlightContent("点我", new MyClickableSpan(R.color.colorAccent) {
+                    @Override
+                    public void onClick(View widget) {
+                        Toast.makeText(MainActivity.this, "点我", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setHighlightContent("也可以点我", new MyClickableSpan() {
+                    @Override
+                    public void onClick(View widget) {
+                        Toast.makeText(MainActivity.this, "也可以点我", Toast.LENGTH_SHORT).show();
+                    }
+                }).create();
 
     }
 
