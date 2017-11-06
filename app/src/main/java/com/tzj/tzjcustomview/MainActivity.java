@@ -2,6 +2,7 @@ package com.tzj.tzjcustomview;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -271,23 +272,32 @@ public class MainActivity extends SwipeBackActivity {
 //        throw new RuntimeException("捕获测试异常2222222222222222222222");
 
         TextView tv = (TextView) findViewById(R.id.tv);
-        tv.setMovementMethod(LinkMovementMethod.getInstance());
-        HighlightStringBuilder highlightStringBuilder = new HighlightStringBuilder();
-        highlightStringBuilder
-                .setContent("我在测试，点我少数哦爱好左上角愛哦也可以点我")
+
+
+        new HighlightStringBuilder()
+                .setContent("我在测试，<点我>少数哦爱好左上角愛哦<也可以点我>,<我没有颜色>-------吞吞吐吐")
                 .setTextView(tv)
-                .setHighlightContent("点我", new MyClickableSpan(R.color.colorAccent) {
+                .setHighlightContent("<点我>", new MyClickableSpan(R.color.colorAccent) {
                     @Override
                     public void onClick(View widget) {
                         Toast.makeText(MainActivity.this, "点我", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setHighlightContent("也可以点我", new MyClickableSpan() {
+                .setHighlightContent("<也可以点我>", new MyClickableSpan(R.color.green) {
                     @Override
                     public void onClick(View widget) {
                         Toast.makeText(MainActivity.this, "也可以点我", Toast.LENGTH_SHORT).show();
                     }
-                }).create();
+                })
+                .setHighlightContent("<我没有颜色>", new MyClickableSpan() {
+                    @Override
+                    public void onClick(View widget) {
+                        Toast.makeText(MainActivity.this, "我没有颜色", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setHighlightContent("吞吞吐吐", null)
+                .setHighlightContent("sssss", null)
+                .create();
 
     }
 
