@@ -90,6 +90,7 @@
         <activity android:name=".scrolltextview.ScrollTextViewActivity" />
         <activity android:name=".WheelViewActivity" />
         <activity android:name=".MoocActivity" />
+        <activity android:name=".html.HtmlActivity" />
 
         <service
             android:name=".aidl.TestService"

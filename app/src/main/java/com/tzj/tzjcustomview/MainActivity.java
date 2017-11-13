@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.AbsListView;
@@ -23,6 +24,7 @@ import com.tzj.tzjcustomview.annotation.TestAnnotation;
 import com.tzj.tzjcustomview.databinding.DataBindingTestActivity;
 import com.tzj.tzjcustomview.highlighttext.HighlightStringBuilder;
 import com.tzj.tzjcustomview.highlighttext.MyClickableSpan;
+import com.tzj.tzjcustomview.html.HtmlActivity;
 import com.tzj.tzjcustomview.intercepttest.solvexy.SolveXYActivity;
 import com.tzj.tzjcustomview.lottie.LottieActivity;
 import com.tzj.tzjcustomview.proxy.Operate;
@@ -38,7 +40,7 @@ import java.lang.reflect.Proxy;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 @OnValueAnnotation("class")
-public class MainActivity extends SwipeBackActivity {
+public class MainActivity extends AppCompatActivity {
 
     private String[] item = {
             "咻一咻",
@@ -73,6 +75,7 @@ public class MainActivity extends SwipeBackActivity {
             "上滚TextView",
             "修改WheelView",
             "MoocView",
+            "HTML.fromHtml",
     };
 
     @Override
@@ -80,7 +83,7 @@ public class MainActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //是否允许滑动返回
-        setSwipeBackEnable(false);
+//        setSwipeBackEnable(false);
 
         //获取外部浏览器打开app时传入的参数Start
         Intent intent = getIntent();
@@ -226,6 +229,9 @@ public class MainActivity extends SwipeBackActivity {
                         break;
                     case 31:
                         startActivity(new Intent(MainActivity.this, MoocActivity.class));
+                        break;
+                    case 32:
+                        startActivity(new Intent(MainActivity.this, HtmlActivity.class));
                         break;
                 }
             }
