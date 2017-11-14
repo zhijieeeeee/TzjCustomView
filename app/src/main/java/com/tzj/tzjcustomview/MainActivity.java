@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "我没有颜色", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setHighlightContent("吞吞吐吐", null)
+                .setHighlightContent("吞吞吐吐", R.color.green)
                 .setHighlightContent("sssss", null)
                 .create();
 

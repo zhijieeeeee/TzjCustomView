@@ -1,10 +1,14 @@
 package com.tzj.tzjcustomview.highlighttext;
 
+import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
+
+import com.tzj.tzjcustomview.App;
 
 /**
  * <p>
@@ -55,6 +59,22 @@ public class HighlightStringBuilder {
         int startIndex = content.indexOf(highlightContent);
         int endIndex = startIndex + highlightContent.length();
         mSpannableStringBuilder.setSpan(clickableSpan, startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return this;
+    }
+
+    /**
+     * 设置高亮内容(不需点击事件)
+     *
+     * @param highlightContent 需要高亮的文本
+     * @param color            高亮颜色
+     */
+    public HighlightStringBuilder setHighlightContent(String highlightContent, int color) {
+        if (TextUtils.isEmpty(highlightContent) || !content.contains(highlightContent)) {
+            return this;
+        }
+        int startIndex = content.indexOf(highlightContent);
+        int endIndex = startIndex + highlightContent.length();
+        mSpannableStringBuilder.setSpan(new ForegroundColorSpan(ContextCompat.getColor(App.getApplication(), color)), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return this;
     }
 
