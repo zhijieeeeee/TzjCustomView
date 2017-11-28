@@ -31,6 +31,7 @@ import com.tzj.tzjcustomview.proxy.Operate;
 import com.tzj.tzjcustomview.proxy.OperateImpl;
 import com.tzj.tzjcustomview.proxy.TestInvocationHandler;
 import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
+import com.tzj.tzjcustomview.richeditor.RichActivity;
 import com.tzj.tzjcustomview.scrolltextview.ScrollTextViewActivity;
 import com.tzj.tzjcustomview.statistics.StatisticsActivity;
 import com.tzj.tzjcustomview.verificationview.VerificationActivity;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             "修改WheelView",
             "MoocView",
             "HTML.fromHtml",
+            "富文本",
     };
 
     @Override
@@ -233,6 +235,9 @@ public class MainActivity extends AppCompatActivity {
                     case 32:
                         startActivity(new Intent(MainActivity.this, HtmlActivity.class));
                         break;
+                    case 33:
+                        startActivity(new Intent(MainActivity.this, RichActivity.class));
+                        break;
                 }
             }
         });
@@ -280,29 +285,30 @@ public class MainActivity extends AppCompatActivity {
         TextView tv = (TextView) findViewById(R.id.tv);
 
 
-        new HighlightStringBuilder()
-                .setContent("我在测试，<点我>少数哦爱好左上角愛哦<也可以点我>,<我没有颜色>-------吞吞吐吐")
-                .setTextView(tv)
-                .setHighlightContent("<点我>", new MyClickableSpan(R.color.colorAccent) {
+        new HighlightStringBuilder(MainActivity.this)
+                .setHighlightContent("<点我>", new MyClickableSpan(MainActivity.this, R.color.colorAccent) {
                     @Override
                     public void onClick(View widget) {
                         Toast.makeText(MainActivity.this, "点我", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setHighlightContent("<也可以点我>", new MyClickableSpan(R.color.green) {
+                .setHighlightContent("<也可以点我>", new MyClickableSpan(MainActivity.this, R.color.green) {
                     @Override
                     public void onClick(View widget) {
                         Toast.makeText(MainActivity.this, "也可以点我", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setHighlightContent("<我没有颜色>", new MyClickableSpan() {
+                .setHighlightContent("<我没有颜色>", new MyClickableSpan(MainActivity.this) {
                     @Override
                     public void onClick(View widget) {
                         Toast.makeText(MainActivity.this, "我没有颜色", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setHighlightContent("吞吞吐吐", R.color.green)
                 .setHighlightContent("sssss", null)
+                .setHighlightContent("吞吞吐吐", R.color.green)
+                .setHighlightContent("ha", 0)
+                .setContent("我在测试，<点我>少数哦爱好左上角愛哦<也可以点我>,<我没有颜色>-------吞吞吐吐ssssshahahah")
+                .setTextView(tv)
                 .create();
 
     }

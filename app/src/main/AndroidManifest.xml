@@ -91,6 +91,7 @@
         <activity android:name=".WheelViewActivity" />
         <activity android:name=".MoocActivity" />
         <activity android:name=".html.HtmlActivity" />
+        <activity android:name=".richeditor.RichActivity" />
 
         <service
             android:name=".aidl.TestService"
