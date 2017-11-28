@@ -110,7 +110,7 @@ public class HighlightStringBuilder {
             throw new IllegalArgumentException("请调用setTextView设置目标TextView");
         }
         if (TextUtils.isEmpty(content)) {
-            throw new IllegalArgumentException("请调用setContent设置原始文本");
+            throw new IllegalArgumentException("原始文本不能为空");
         }
         if (mSpannableStringBuilder != null) {
             return;
