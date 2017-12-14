@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             "MoocView",
             "HTML.fromHtml",
             "富文本",
+            "MpChart",
     };
 
     @Override
@@ -237,6 +238,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 33:
                         startActivity(new Intent(MainActivity.this, RichActivity.class));
+                        break;
+                    case 34:
+                        startActivity(new Intent(MainActivity.this, MpChartActivity.class));
                         break;
                 }
             }

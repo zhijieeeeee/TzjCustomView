@@ -92,6 +92,7 @@
         <activity android:name=".MoocActivity" />
         <activity android:name=".html.HtmlActivity" />
         <activity android:name=".richeditor.RichActivity" />
+        <activity android:name=".MpChartActivity" />
 
         <service
             android:name=".aidl.TestService"

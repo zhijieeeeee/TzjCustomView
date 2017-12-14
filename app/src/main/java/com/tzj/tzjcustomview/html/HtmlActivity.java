@@ -46,7 +46,8 @@ public class HtmlActivity extends AppCompatActivity {
                 "<img src=\"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4131634322,487666839&fm=27&gp=0.jpg\" alt=\"11111\"/><br>" +
                 "<span class=\"fund_url\" fund-id =\"1916\">1916</span><fund>77777</fund>少数解耦爱江山哦i" +
                 "<span class=\"fund_url\" fund-id =\"210000\">210000</span>" +
-                "<span>没有class的</span>";
+                "<span>没有class的</span>"
+                +"<video src=\\\"http://o7iblkvul.bkt.clouddn.com/test.mp3\\\" type=\\\"video/x-ms-asf-plugin\\\" width=\\\"550\\\" height=\\\"400\\\" autostart=\\\"false\\\" loop=\\\"true\\\" />";
 
         //TextView加载Html代码
         //设置超链接可以打开网页//click must
