@@ -1,5 +1,7 @@
 package com.tzj.tzjcustomview.databinding;
 
+import android.databinding.ObservableField;
+
 /**
  * <p>
  * Description：
@@ -14,6 +16,8 @@ public class User {
     private int number;
     private String display;
     private boolean show;
+    //可及时修改UI的
+    public final ObservableField<String> sex = new ObservableField<>("男");
 
     public String getId() {
         return id;

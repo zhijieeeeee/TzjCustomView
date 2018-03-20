@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -7,6 +8,11 @@
         <variable
             name="user"
             type="com.tzj.tzjcustomview.databinding.User" />
+
+        <!--事件处理类-->
+        <variable
+            name="handler"
+            type="com.tzj.tzjcustomview.databinding.MyHandler" />
 
         <!--也可写成如下  alias可设置别名-->
         <!--
@@ -23,8 +29,11 @@
             name="age"
             type="String" />
 
-        <!--导入方法-->
+        <!--使用静态方法-->
         <import type="com.tzj.tzjcustomview.databinding.MyStringUtils" />
+
+        <!--使用View的属性，比如View.VISIBLE，View.GONE-->
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
@@ -32,20 +41,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!--拼接中使用中文会报错，中文要使用@string-->
+        <!--拼接' "" '-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{user.id}" />
-
+            android:text='@{"id="+user.id}' />
+        <!--拼接" `` "-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{user.name}" />
+            android:text="@{`name=`+user.name}" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{age}" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:text="我判断隐藏显示"
+            android:visibility="@{user.show?View.VISIBLE:View.GONE}" />
 
         <!--下面是使用静态方法-->
         <TextView
@@ -58,14 +76,49 @@
             android:layout_height="wrap_content"
             android:text="@{MyStringUtils.toString(user.number)}" />
 
-        <!--Null Coalescing 运算符-->
-        <!--就等价于
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->handler.onBtn1Click()}"
+            android:text="按钮一" />
 
-        @{user.display != null ? user.display : user.id}"-->
+        <!--下面这种和上面是一样的，view可以忽略-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{(view)->handler.onBtn2Click()}"
+            android:text="按钮二" />
+
+        <!--传递View到方法中,btn表示当前控件，名称随意-->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{(btn)->handler.onBtn3Click(btn,user)}"
+            android:text="按钮三" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onLongClick="@{()->handler.onLongClick()}"
+            android:text="按钮四长按" />
+
+        <!--传递到include中-->
+        <include
+            layout="@layout/data_binding_include"
+            bind:user="@{user}" />
+
+        <!--使用ObservableField更新ui-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{user.display??user.id}" />
+            android:text='@{user.name+" is "+user.sex}'
+            android:textColor="@android:color/holo_blue_light" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->handler.changeSex(user)}"
+            android:text="修改性别大法" />
 
     </LinearLayout>
 </layout>
