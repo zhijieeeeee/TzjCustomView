@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TzjCustomView</string>
+
+    <!--
+    %N代表第N个参数，如%3代表的是第三个参数；
+
+    $是结束符；
+
+    d/s/.2f代表的是整数/字符串/保留2位小数点的浮点数
+    -->
+    <string name="ageFormat">%1$s的年龄是%2$d，id是%3$s</string>
 </resources>

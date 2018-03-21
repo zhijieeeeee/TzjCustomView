@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.tzj.tzjcustomview.R;
@@ -35,7 +36,7 @@ public class DataBindingTestActivity extends AppCompatActivity {
         //这是绑定
         binding.setUser(user);
 
-        binding.setAge("24");
+        binding.setAge(25);
 //        binding.setShow(true);
 
 
@@ -49,5 +50,10 @@ public class DataBindingTestActivity extends AppCompatActivity {
 
         //获取设置了id的控件
         Log.i("MyLog",binding.tvId.getText().toString());
+    }
+
+    //点击事件，直接在xml中使用
+    public void open(View view){
+        Toast.makeText(this,"哈哈哈哈",Toast.LENGTH_SHORT).show();
     }
 }
