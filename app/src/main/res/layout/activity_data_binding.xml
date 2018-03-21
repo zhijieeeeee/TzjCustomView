@@ -33,9 +33,14 @@
         <variable
             name="age"
             type="int" />
+
         <variable
-            name="firstName"
-            type="String"/>
+            name="imageUrl"
+            type="String" />
+
+        <variable
+            name="imageUrl2"
+            type="String" />
 
         <!--使用静态方法-->
         <import type="com.tzj.tzjcustomview.databinding.MyStringUtils" />
@@ -79,17 +84,18 @@
                 android:text="我判断隐藏显示"
                 android:visibility="@{user.show?View.VISIBLE:View.GONE}" />
 
-            <!--下面是使用静态方法-->
+            <!--使用静态方法-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{MyStringUtils.capitalize(user.name)}" />
-
+            <!--使用静态方法-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{MyStringUtils.toString(user.number)}" />
 
+            <!--点击事件-->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -158,6 +164,19 @@
                 android:layout_height="wrap_content"
                 android:onClick="open"
                 android:text="事件直接定义在Activity中" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickImg"
+                bind:error="@{@drawable/speak}"
+                bind:imageUrl="@{imageUrl}" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                bind:imageUrl="@{imageUrl2}"
+                bind:msg="@{imageUrl2}"/>
         </LinearLayout>
     </ScrollView>
 </layout>
