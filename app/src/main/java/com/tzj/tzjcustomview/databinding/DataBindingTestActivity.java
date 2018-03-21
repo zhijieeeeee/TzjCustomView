@@ -4,6 +4,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.tzj.tzjcustomview.R;
 
@@ -39,5 +41,13 @@ public class DataBindingTestActivity extends AppCompatActivity {
 
         MyHandler myHandler=new MyHandler(this);
         binding.setHandler(myHandler);
+
+        Fund fund=new Fund();
+        fund.setFundId(1111);
+        fund.setName("上证50指数");
+        binding.setFund(fund);
+
+        //获取设置了id的控件
+        Log.i("MyLog",binding.tvId.getText().toString());
     }
 }

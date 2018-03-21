@@ -5,8 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.tzj.tzjcustomview.App;
-
 /**
  * Created by tangzhijie on 2018/3/20.
  */
@@ -38,11 +36,18 @@ public class MyHandler {
     }
 
     //使用ObservableField更新ui
-    public void changeSex(User user){
-        if(user.sex.get().equals("男")){
+    public void changeSex(User user) {
+        if (user.sex.get().equals("男")) {
             user.sex.set("女");
-        }else{
+        } else {
             user.sex.set("男");
         }
+    }
+
+    //使用继承BaseObservable更新ui
+    public void changeFund(Fund fund) {
+        fund.setFundId(2222);
+        fund.setName("金鹰核心");
+        Toast.makeText(context, "基金名称=" + fund.getName(), Toast.LENGTH_SHORT).show();
     }
 }
