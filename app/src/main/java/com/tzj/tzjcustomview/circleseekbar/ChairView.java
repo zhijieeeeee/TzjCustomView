@@ -45,7 +45,8 @@ public class ChairView extends LinearLayout {
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
+                iv1.setTranslationX(i);
+                iv2.setTranslationX(i);
             }
 
             @Override
