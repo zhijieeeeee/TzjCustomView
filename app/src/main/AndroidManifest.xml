@@ -38,8 +38,7 @@
                 <category android:name="android.intent.category.DEFAULT"></category>
                 <category android:name="android.intent.category.BROWSABLE"></category>
 
-                <data
-                    android:scheme="rydyoucai" />
+                <data android:scheme="rydyoucai" />
                 <!--tzj://view-->
             </intent-filter>
         </activity>
@@ -93,6 +92,9 @@
         <activity android:name=".html.HtmlActivity" />
         <activity android:name=".richeditor.RichActivity" />
         <activity android:name=".MpChartActivity" />
+        <activity
+            android:name=".ChairActivity"
+            android:hardwareAccelerated="false" />
 
         <service
             android:name=".aidl.TestService"

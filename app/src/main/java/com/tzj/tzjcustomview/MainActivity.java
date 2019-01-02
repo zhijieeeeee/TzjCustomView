@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
             "HTML.fromHtml",
             "富文本",
             "MpChart",
+            "座椅"
     };
 
     @Override
@@ -241,6 +242,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 34:
                         startActivity(new Intent(MainActivity.this, MpChartActivity.class));
+                        break;
+                    case 35:
+                        startActivity(new Intent(MainActivity.this, ChairActivity.class));
                         break;
                 }
             }
