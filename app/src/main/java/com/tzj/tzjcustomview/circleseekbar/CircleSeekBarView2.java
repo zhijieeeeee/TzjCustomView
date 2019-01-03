@@ -21,7 +21,7 @@ import com.tzj.tzjcustomview.R;
  * Author ：Spider-Man.
  * Date：2019/1/2
  */
-public class CircleSeekBarView extends View {
+public class CircleSeekBarView2 extends View {
 
     private int centerX;
     private int centerY;
@@ -30,11 +30,11 @@ public class CircleSeekBarView extends View {
     private Paint mArcPaint;
     private float circleWidth = 4;
     //最小角度
-    public static int MIN_DEGREE = 260;
+    public static int MIN_DEGREE = 180;
     //最大角度
-    public static int MAX_DEGREE = 360;
+    public static int MAX_DEGREE = 210;
     //默认角度
-    public static int DEFAULT_THUMB_DEGREE = 330;
+    public static int DEFAULT_THUMB_DEGREE = 180;
     private int thumbDegree = DEFAULT_THUMB_DEGREE;
     //滑块旋转角度
     private int thumbRotateDegree = thumbDegree - MIN_DEGREE;
@@ -48,16 +48,16 @@ public class CircleSeekBarView extends View {
         this.onSeekListener = onSeekListener;
     }
 
-    public CircleSeekBarView(Context context) {
+    public CircleSeekBarView2(Context context) {
         super(context);
         init();
     }
 
-    public CircleSeekBarView(Context context, AttributeSet attrs) {
+    public CircleSeekBarView2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CircleSeekBarView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CircleSeekBarView2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }

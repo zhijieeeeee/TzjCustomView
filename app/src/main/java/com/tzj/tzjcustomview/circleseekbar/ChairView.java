@@ -22,6 +22,7 @@ public class ChairView extends LinearLayout {
     private ImageView iv1;
     private ImageView iv2;
     private CircleSeekBarView circle_seekbar;
+    private CircleSeekBarView2 circle_seekbar2;
     private SeekBar seekbar;
 
     public ChairView(Context context, @Nullable AttributeSet attrs) {
@@ -32,6 +33,7 @@ public class ChairView extends LinearLayout {
         iv1 = (ImageView) findViewById(R.id.iv1);
         iv2 = (ImageView) findViewById(R.id.iv2);
         circle_seekbar = (CircleSeekBarView) findViewById(R.id.circle_seekbar);
+        circle_seekbar2 = (CircleSeekBarView2) findViewById(R.id.circle_seekbar2);
         seekbar = (SeekBar) findViewById(R.id.seekbar);
         circle_seekbar.setThumbDegree(260);
         circle_seekbar.setOnSeekListener(new CircleSeekBarView.OnSeekListener() {
@@ -40,6 +42,15 @@ public class ChairView extends LinearLayout {
                 iv2.setPivotX(iv2.getWidth() / 2);
                 iv2.setPivotY(iv2.getHeight());
                 iv2.setRotation(thumbRotateDegree);
+            }
+        });
+        circle_seekbar2.setThumbDegree(180);
+        circle_seekbar2.setOnSeekListener(new CircleSeekBarView2.OnSeekListener() {
+            @Override
+            public void onSeek(int thumbRotateDegree) {
+                iv1.setPivotX(iv1.getWidth());
+                iv1.setPivotY(iv1.getHeight() / 2);
+                iv1.setRotation(thumbRotateDegree);
             }
         });
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
