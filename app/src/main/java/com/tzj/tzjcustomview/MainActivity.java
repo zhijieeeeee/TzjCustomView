@@ -2,12 +2,10 @@ package com.tzj.tzjcustomview;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -34,11 +32,10 @@ import com.tzj.tzjcustomview.puzzle.PuzzleActivity;
 import com.tzj.tzjcustomview.richeditor.RichActivity;
 import com.tzj.tzjcustomview.scrolltextview.ScrollTextViewActivity;
 import com.tzj.tzjcustomview.statistics.StatisticsActivity;
+import com.tzj.tzjcustomview.switchview.SwitchView;
 import com.tzj.tzjcustomview.verificationview.VerificationActivity;
 
 import java.lang.reflect.Proxy;
-
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 @OnValueAnnotation("class")
 public class MainActivity extends AppCompatActivity {
@@ -79,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
             "HTML.fromHtml",
             "富文本",
             "MpChart",
-            "座椅"
+            "座椅",
+            "开关"
     };
 
     @Override
@@ -246,6 +244,9 @@ public class MainActivity extends AppCompatActivity {
                     case 35:
                         startActivity(new Intent(MainActivity.this, ChairActivity.class));
                         break;
+                    case 36:
+                        startActivity(new Intent(MainActivity.this, SwitchActivity.class));
+                        break;
                 }
             }
         });
@@ -319,6 +320,15 @@ public class MainActivity extends AppCompatActivity {
                 .setTextView(tv)
                 .create();
 
+
+        final SwitchView switchView = (SwitchView) findViewById(R.id.switchView);
+        switchView.setStatus(true);
+        switchView.setOnSwitchListener(new SwitchView.OnSwitchListener() {
+            @Override
+            public void onSwitch() {
+                switchView.changeStatus();
+            }
+        });
     }
 
     @TestAnnotation(

@@ -4,11 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.tzj.tzjcustomview.switchview.SwitchView
+        android:id="@+id/switchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/tv"
-        android:textColorHighlight="#00ffffff"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColorHighlight="#00ffffff" />
 
     <!--clipToPadding="false"可以让ListView滑动到padding的范围内-->
     <ListView
